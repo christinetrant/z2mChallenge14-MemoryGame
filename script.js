@@ -177,4 +177,5 @@ cards.forEach(function (element, index){
 
 // at beginning of game show all cards then flip over - 5 seconds maybe?
 
-
+// if reset button is pressed
+reset.addEventListener('click', clearBoard)
