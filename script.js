@@ -2,6 +2,10 @@ const card = document.getElementsByClassName('card');
 // use spread operator to log all cards in array:
 const cards = [...card];
 
+// DOM Strings
+const timer = document.getElementById('timer');
+const moves = document.getElementById('moves');
+const reset = document.getElementById('reset');
 // counter = 0 as user only gets 2 cards to turn at a time
 let count = 0;
 // to store value of card so we can match it

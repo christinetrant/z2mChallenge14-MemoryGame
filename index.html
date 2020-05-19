@@ -2,25 +2,39 @@
 <html>
 <head>
 	<title>Memory Game</title>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<h1>Memory Game</h1>
 	<div class="wrapper">
-	
-	<!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_flip_card -->
-
+		
+	</div>
+	<!-- flex wrapper -->
+	<div class="wrapper">
+	<!-- Container for board -->
 		<div id="container">
-	    <!-- <div class="card purple">🐯</div> -->
-	    <!-- <div class="card">
-			  <div class="card-inner">
-			    <div class="card-front card blue">🔹</div>
-			    <div class="card-back card purple">🐯</div>
-			  </div>
-			</div> -->
 
 
-
+			<div class="score-board">
+				<ul class="score-ul">
+					<ul class="time-ul">
+						<li>Time Elapsed:</li>
+						<li id="timer">Time Elapsed:</li>
+					</ul>
+					<ul class="moves-ul">
+						<li>Moves:</li>
+						<li id="moves">Moves:</li>
+					</ul>
+					<ul class="reset-ul">
+						<li>Reset Game</li>
+						<li id="reset">Reset Game</li>
+					</ul>
+				</ul>
+			</div>	
+				
+		
+	    
 
 			<!-- ♣️ -->
 			<div class="card purple tiger">
