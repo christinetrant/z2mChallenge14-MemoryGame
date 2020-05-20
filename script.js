@@ -12,8 +12,8 @@ let count = 0;
 let lastCardValue = '';
 let lastCardIndex = '';
 let currentCardValue = '';
-// let matchArray = [];
-// let lastCard;
+let matchArray = [];
+let lastCard;
 
 const checkMatch = () => {}
 const checkSameCard = () => {}
@@ -170,6 +170,48 @@ cards.forEach(function (element, index){
 				// 2B. IF A MATCH KEEP CARDS FLIPPED OVER - maybe add to a matchedcard array?
 				// 2C. CONTINUE GAME
 				console.log('cards match!')
+				console.log('element', element, 'lastcard', lastCard)
+				console.log('lastcard i:', lastCardIndex, 'currcard i:', index)
+				matchArray.push(lastCard);
+				matchArray.push(element);
+
+				
+				console.log('match', matchArray);
+				// if last card index is higher remove that one first
+				// if(lastCardIndex > index) {
+				// 	cards.splice(lastCard, 1);
+				// 	cards.splice(element, 1);
+				// } else {
+				// 	cards.splice(element, 1);
+				// 	cards.splice(lastCard, 1);
+				// }
+
+				for(let i=0; i<cards.length;i++) {
+					if(cards[i] === element || cards[i] === lastCard ) {
+						cards.splice(i,1);
+					}
+				}
+
+					// var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+					// for( var i = 0; i < arr.length; i++) { 
+					// 	if ( arr[i] === 5) { 
+					// 		arr.splice(i, 1); 
+					// 	}
+					// }
+					//=> [1, 2, 3, 4, 6, 7, 8, 9, 0]
+
+
+
+
+				
+				
+				console.log('lastcard i:', lastCardIndex, 'currcard i:', index)
+				console.log('cards', cards);
+				matchArray.forEach(match => {
+					// match.classList.add('card-rotate');
+					match.style.background = "yellow";
+					// clearBoard();
+				})
 				// checkMatch();
 			// 3. IF NOT A MATCH RESET BOARD
 			} else {
@@ -191,3 +233,6 @@ cards.forEach(function (element, index){
 
 // if reset button is pressed
 reset.addEventListener('click', resetGame)
+
+
+// NEED TO RANDOMIZE CARDS!!!
