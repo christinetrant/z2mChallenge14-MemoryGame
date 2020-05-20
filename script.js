@@ -1,6 +1,6 @@
 const card = document.getElementsByClassName('card');
 // use spread operator to log all cards in array:
-const cards = [...card];
+let cards = [...card];
 
 // DOM Strings
 const timer = document.getElementById('timer');
@@ -17,80 +17,6 @@ let lastCard;
 
 const checkMatch = () => {}
 const checkSameCard = () => {}
-// if(lastCardIndex !== index) {
-// 			displayCard(element, index);
-// 			console.log('lastCard: ', lastCardIndex, 'index: ', index)
-
-// 			// check for match:
-// 			if(lastCardValue === element.classList[1]){
-// 				console.log('it\'s a match!');
-// 				// matchArray.push(element);
-// 				// matchArray.push(lastCard);
-// 				// console.log('match', matchArray);
-// 				// cards.splice(element, 1);
-// 				// cards.splice(lastCard, 1);
-// 				// console.log('cards', cards);
-// 			}
-// 		} else {
-// 			// if(element.classList.contains('active')) {
-// 				console.log('count < 2 card already active', lastCardIndex, index)
-// 				// count=1;
-// 				// LASTCARDINDEC REMOVE EVENT LISTENER
-// 				clearBoard();
-// 			// 	console.log('count', count);
-// 			}
-
-
-// function checkCount(element, index) {
-// 	if(count<1) {
-// 		console.log('first go', count)
-// 		displayCard(element, index);
-
-// 		lastCardIndex = index;
-// 		lastCard = element;
-// 		lastCardValue = element.classList[1];
-// 		console.log(lastCardIndex, index);
-// 	} else if(count<2) {
-// 		console.log('second & last go', count)
-// 		displayCard(element, index);
-// 		// display the elements while count is less than 2
-// 		// while(count<2) {
-
-// 			// THINGS TO DO:
-// 			// 1. CHECK IF CARD IS THE SAME ONE CLICKED
-// 			// 2. CHECK IF IT IS A MATCH
-// 			// 	2B. IF A MATCH KEEP CARDS FLIPPED OVER
-// 			// 	2C. CONTINUE GAME
-// 			// 3. IF NOT A MATCH RESET BOARD
-			
-// 			// checkMatch();
-// 			// checkSameCard();
-		
-// 		// }
-
-// 		// otherwise reset the board in 1.5 seconds as 2 cards will be showing
-// 		setTimeout(clearBoard, 1500);
-// 	} else if(count === 2) {
-// 		console.log('count equals 2 - reset count', count)
-// 		clearBoard();
-// 	}
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function displayCard(element, index) {
@@ -129,6 +55,7 @@ function resetGame() {
 		lastCardValue = '';
 		count = 0;
 	})
+	// cards = [...card];
 }
 
 
@@ -177,30 +104,20 @@ cards.forEach(function (element, index){
 
 				
 				console.log('match', matchArray);
-				// if last card index is higher remove that one first
-				// if(lastCardIndex > index) {
-				// 	cards.splice(lastCard, 1);
-				// 	cards.splice(element, 1);
-				// } else {
-				// 	cards.splice(element, 1);
-				// 	cards.splice(lastCard, 1);
+
+
+				// for(let i=0; i<cards.length;i++) {
+				// 	if(cards[i] === element || cards[i] === lastCard ) {
+				// 		cards.splice(i,1);
+				// 	}
 				// }
 
-				for(let i=0; i<cards.length;i++) {
-					if(cards[i] === element || cards[i] === lastCard ) {
+				cards.forEach((match, i) => {
+					if(match === element || match === lastCard ) {
 						cards.splice(i,1);
 					}
-				}
-
-					// var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-					// for( var i = 0; i < arr.length; i++) { 
-					// 	if ( arr[i] === 5) { 
-					// 		arr.splice(i, 1); 
-					// 	}
-					// }
-					//=> [1, 2, 3, 4, 6, 7, 8, 9, 0]
-
-
+				})
+				clearBoard();
 
 
 				
@@ -209,7 +126,8 @@ cards.forEach(function (element, index){
 				console.log('cards', cards);
 				matchArray.forEach(match => {
 					// match.classList.add('card-rotate');
-					match.style.background = "yellow";
+					match.classList.remove('blue');
+					match.classList.add('yellow');
 					// clearBoard();
 				})
 				// checkMatch();
@@ -217,7 +135,7 @@ cards.forEach(function (element, index){
 			} else {
 				// clear board
 				// otherwise reset the board in 1.5 seconds as 2 cards will be showing
-				setTimeout(clearBoard, 1500);
+				setTimeout(clearBoard, 1000);
 			}
 		}
 	} else if(count === 2) {
