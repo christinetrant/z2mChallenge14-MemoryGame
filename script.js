@@ -1,19 +1,20 @@
 const card = document.getElementsByClassName('card');
 // use spread operator to log all cards in array:
 let cards = [...card];
+// counter = 0 as user only gets 2 cards to turn at a time
+let count = 0;
+// to store value of card so we can match it
+let lastCardValue = ''; // e.g. unicorn
+let lastCardIndex = ''; // index of last card
+let currentCardValue = ''; // e.g. tiger
+let matchArray = []; // temp array to store matched cards
+let lastCard; // div of last card
 
 // DOM Strings
 const timer = document.getElementById('timer');
 const moves = document.getElementById('moves');
 const reset = document.getElementById('reset');
-// counter = 0 as user only gets 2 cards to turn at a time
-let count = 0;
-// to store value of card so we can match it
-let lastCardValue = '';
-let lastCardIndex = '';
-let currentCardValue = '';
-let matchArray = [];
-let lastCard;
+
 
 const checkMatch = () => {}
 const checkSameCard = () => {}
@@ -27,7 +28,8 @@ function displayCard(element, index) {
 	element.classList.add('blue');
 	// increment value of count
 	count++;
-	console.log(element.classList[1])
+	// console.log(element.classList[1])
+	currentCardValue = element.classList[1];
 	// item.classList[2]
 }
 
@@ -45,26 +47,30 @@ function clearBoard() {
 }
 
 // resets game
-function resetGame() { 
-		lastCardIndex = '';
-		lastCardValue = '';
-		count = 0;
-		cards = [];
-		cards = [...card]
-		matchArray = [];
+const init = () => { 
+	// use spread operator to log all cards in array:
+	cards = [...card];
+	// counter = 0 as user only gets 2 cards to turn at a time
+	count = 0;
+	// to store value of card so we can match it
+	lastCardValue = ''; // e.g. unicorn
+	lastCardIndex = ''; // index of last card
+	currentCardValue = ''; // e.g. tiger
+	matchArray = []; // temp array to store matched cards
+	lastCard; // div of last card
 	cards.forEach(function (element, index){
 		element.classList.remove('card-rotate')
 		element.classList.remove('yellow');
 		element.classList.add('purple');	
 	})
+		// cards = [];
+		// cards = [...card]
 }
 
 
 
 cards.forEach(function (element, index){
   element.addEventListener("click", function() {  
-
-  	// checkCount(element, index);
 
   	if(count<1) {
 		console.log('first go', 'count:', count)
@@ -74,10 +80,12 @@ cards.forEach(function (element, index){
 		lastCard = element;
 		lastCardValue = element.classList[1];
 		console.log('lastCardIndex:', lastCardIndex, 'index:', index);
+
 	} else if(count<2) {
-		console.log('second & last go', 'count:', count)
+
+		// console.log('second & last go', 'count:', count)
 		displayCard(element, index);
-		console.log('lastCardIndex:', lastCardIndex, 'index:', index);
+		// console.log('lastCardIndex:', lastCardIndex, 'index:', index);
 		currentCardValue = element.classList[1];
 		// display the elements while count is less than 2
 
@@ -86,8 +94,8 @@ cards.forEach(function (element, index){
 		if(lastCardIndex === index) {
 			// reset count
 			count = 0;
-			console.log('same card clicked twice');
-			console.log('count', count)
+			// console.log('same card clicked twice');
+			// console.log('count', count)
 			// call displayCard again 
 			displayCard(element, index);
 
@@ -149,7 +157,10 @@ cards.forEach(function (element, index){
 // at beginning of game show all cards then flip over - 5 seconds maybe?
 
 // if reset button is pressed
-reset.addEventListener('click', resetGame)
+reset.addEventListener('click', init)
+
+// Call init function to begin game;
+init();
 
 
 // NEED TO RANDOMIZE CARDS!!!
