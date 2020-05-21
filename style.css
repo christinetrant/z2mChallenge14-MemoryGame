@@ -53,9 +53,8 @@ ul {
 	grid-template-columns: repeat(4, 1fr);
   border-radius: 25px;
   padding: 0 5% 5% 5%;
-  background: #e9f2fc;
-
-    -moz-box-shadow: 4px 4px 5px #888888;
+  background: rgba(233,242,252, 0.6);
+  -moz-box-shadow: 4px 4px 5px #888888;
   -ms-box-shadow: 4px 4px 5px #888888;
   -webkit-box-shadow: 4px 4px 5px #888888;
   -o-box-shadow: 4px 4px 5px #888888;
