@@ -41,7 +41,7 @@ function clearBoard() {
 		// the current card value becomes the last
 		lastCardValue = currentCardValue;
 		// clear current value so it can be reassigned
-		currentCardValue = '';
+		// currentCardValue = '';
 		// reset count
 		count = 0;
 	})
@@ -84,7 +84,7 @@ cards = cards.forEach((element, index) => {
 		console.log('lastCardIndex:', lastCardIndex, 'index:', index);
 
 	// display the elements while count is less than 2
-	} else if(count<2) {
+	} else if(count<=2) {
 		// console.log('second & last go', 'count:', count)
 		// play a card to turn
 		displayCard(element, index);
@@ -114,13 +114,15 @@ cards = cards.forEach((element, index) => {
 				})		
 				// remove matched cards from card array
 				cards.forEach((match, i) => {
-
 						if(match === element ) {
 							cards.splice(i,1);
 						} else if(match === lastCard) {
 							cards.splice(i,1);
 						}					
 				})
+				// if(cards.length === 1) {
+				// 	matchArray.push(element)
+				// }
 				// 2C. CONTINUE GAME
 				clearBoard();				
 				// checkMatch();
