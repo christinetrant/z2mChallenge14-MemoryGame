@@ -46,16 +46,17 @@ function clearBoard() {
 
 // resets game
 function resetGame() { 
-	cards.forEach(function (element, index){
-		element.classList.remove('card-rotate')
-		// element.classList.remove('active');
-		element.classList.remove('blue');
-		element.classList.add('purple');
 		lastCardIndex = '';
 		lastCardValue = '';
 		count = 0;
+		cards = [];
+		cards = [...card]
+		matchArray = [];
+	cards.forEach(function (element, index){
+		element.classList.remove('card-rotate')
+		element.classList.remove('yellow');
+		element.classList.add('purple');	
 	})
-	// cards = [...card];
 }
 
 
