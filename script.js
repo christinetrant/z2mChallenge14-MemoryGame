@@ -20,7 +20,7 @@ const checkMatch = () => {}
 const checkSameCard = () => {}
 
 
-function displayCard(element, index) {
+const displayCard = (element, index) => {
 	// add classes to rotate card
 	element.classList.add('card-rotate');
 	// change color of overturned cards
@@ -28,20 +28,21 @@ function displayCard(element, index) {
 	element.classList.add('blue');
 	// increment value of count
 	count++;
-	// console.log(element.classList[1])
+	// card value becomes the current element
 	currentCardValue = element.classList[1];
-	// item.classList[2]
 }
 
 // function turns cards back over face down
 function clearBoard() { 
 	cards.forEach(function (element, index){
 		element.classList.remove('card-rotate');
-		// element.classList.remove('active');
 		element.classList.remove('blue');
 		element.classList.add('purple');
-		// lastCardIndex = '';
-		// lastCardValue = '';
+		// the current card value becomes the last
+		lastCardValue = currentCardValue;
+		// clear current value so it can be reassigned
+		currentCardValue = '';
+		// reset count
 		count = 0;
 	})
 }
@@ -69,11 +70,12 @@ const init = () => {
 
 
 
-cards.forEach(function (element, index){
+cards = cards.forEach((element, index) => {
   element.addEventListener("click", function() {  
 
   	if(count<1) {
 		console.log('first go', 'count:', count)
+		// play a card to turn
 		displayCard(element, index);
 
 		lastCardIndex = index;
@@ -81,21 +83,18 @@ cards.forEach(function (element, index){
 		lastCardValue = element.classList[1];
 		console.log('lastCardIndex:', lastCardIndex, 'index:', index);
 
+	// display the elements while count is less than 2
 	} else if(count<2) {
-
 		// console.log('second & last go', 'count:', count)
+		// play a card to turn
 		displayCard(element, index);
-		// console.log('lastCardIndex:', lastCardIndex, 'index:', index);
-		currentCardValue = element.classList[1];
-		// display the elements while count is less than 2
 
+		currentCardValue = element.classList[1];
 		// THINGS TO DO:
 		// 1. CHECK IF CARD IS THE SAME ONE CLICKED
 		if(lastCardIndex === index) {
 			// reset count
 			count = 0;
-			// console.log('same card clicked twice');
-			// console.log('count', count)
 			// call displayCard again 
 			displayCard(element, index);
 
@@ -104,44 +103,30 @@ cards.forEach(function (element, index){
 		} else {
 			if(currentCardValue === lastCardValue) {
 				// 2B. IF A MATCH KEEP CARDS FLIPPED OVER - maybe add to a matchedcard array?
-				// 2C. CONTINUE GAME
 				console.log('cards match!')
-				console.log('element', element, 'lastcard', lastCard)
-				console.log('lastcard i:', lastCardIndex, 'currcard i:', index)
+
+				// push matching cards into temp array
 				matchArray.push(lastCard);
 				matchArray.push(element);
 				matchArray.forEach(match => {
 					match.classList.remove('blue');
 					match.classList.add('yellow');
-				})
-				
-				console.log('match', matchArray);
-
-				console.log('lastcard i:', lastCardIndex, 'currcard i:', index)
-				
-				
-
+				})		
+				// remove matched cards from card array
 				cards.forEach((match, i) => {
 
 						if(match === element ) {
 							cards.splice(i,1);
 						} else if(match === lastCard) {
 							cards.splice(i,1);
-						}
-
-					
+						}					
 				})
-				clearBoard();
-				console.log('cards', cards);
-				console.log('lastcard i:', lastCardIndex, 'currcard i:', index)
-				
-				
-
+				// 2C. CONTINUE GAME
+				clearBoard();				
 				// checkMatch();
 			// 3. IF NOT A MATCH RESET BOARD
 			} else {
-				// clear board
-				// otherwise reset the board in 1.5 seconds as 2 cards will be showing
+				// clear board in 1 second as 2 cards will be showing
 				setTimeout(clearBoard, 1000);
 			}
 		}
