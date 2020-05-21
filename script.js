@@ -34,12 +34,12 @@ function displayCard(element, index) {
 // function turns cards back over face down
 function clearBoard() { 
 	cards.forEach(function (element, index){
-		element.classList.remove('card-rotate')
+		element.classList.remove('card-rotate');
 		// element.classList.remove('active');
 		element.classList.remove('blue');
 		element.classList.add('purple');
-		lastCardIndex = '';
-		lastCardValue = '';
+		// lastCardIndex = '';
+		// lastCardValue = '';
 		count = 0;
 	})
 }
@@ -102,35 +102,33 @@ cards.forEach(function (element, index){
 				console.log('lastcard i:', lastCardIndex, 'currcard i:', index)
 				matchArray.push(lastCard);
 				matchArray.push(element);
-
+				matchArray.forEach(match => {
+					match.classList.remove('blue');
+					match.classList.add('yellow');
+				})
 				
 				console.log('match', matchArray);
 
-
-				// for(let i=0; i<cards.length;i++) {
-				// 	if(cards[i] === element || cards[i] === lastCard ) {
-				// 		cards.splice(i,1);
-				// 	}
-				// }
+				console.log('lastcard i:', lastCardIndex, 'currcard i:', index)
+				
+				
 
 				cards.forEach((match, i) => {
-					if(match === element || match === lastCard ) {
-						cards.splice(i,1);
-					}
+
+						if(match === element ) {
+							cards.splice(i,1);
+						} else if(match === lastCard) {
+							cards.splice(i,1);
+						}
+
+					
 				})
 				clearBoard();
-
-
-				
-				
-				console.log('lastcard i:', lastCardIndex, 'currcard i:', index)
 				console.log('cards', cards);
-				matchArray.forEach(match => {
-					// match.classList.add('card-rotate');
-					match.classList.remove('blue');
-					match.classList.add('yellow');
-					// clearBoard();
-				})
+				console.log('lastcard i:', lastCardIndex, 'currcard i:', index)
+				
+				
+
 				// checkMatch();
 			// 3. IF NOT A MATCH RESET BOARD
 			} else {
