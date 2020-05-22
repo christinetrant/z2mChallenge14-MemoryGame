@@ -123,16 +123,19 @@ cards = cards.forEach((element, index) => {
 				// cards.splice(lastCardIndex, 1);
 				for(let i = 0; i< cards.length; i++) {
 					// console.log(cards[i], 'cards[i]')
-					if(cards[i] === lastCard || cards[i] === currentCard) {
+					if(cards[i] === lastCard) {
 						console.log(cards, '1')
 						cards.splice(i, 1);
 						console.log(cards, '2')
 					}
+					if(cards[i] === currentCard) {
+						cards.splice(i, 1);
+					}
 				}
 				// save last card before overwriting current card
-				// lastCardValue = '';
-				// lastCard = '';
-				// lastCardIndex = '';
+				lastCardValue = '';
+				lastCard = '';
+				lastCardIndex = '';
 				count = 0;
 
 				// push matching cards into temp array
@@ -166,7 +169,10 @@ cards = cards.forEach((element, index) => {
 		console.log('count equals 2 - reset count', count)
 		clearBoard();
 	}
-
+	// if there are no more cards in array - user has won
+	if(cards.length<=1) {
+		console.log('You win! Game Over')
+	}
 	
 	})
 });
