@@ -10,14 +10,25 @@ let lastCardIndex = ''; // index of last card
 let currentCardIndex = ''; // index of current card
 let lastCard; // div of last card
 let currentCard; // div of current card
-// let matchArray = []; // temp array to store matched cards
-
 
 // DOM Strings
 const timer = document.getElementById('timer');
 const moves = document.getElementById('moves');
 const reset = document.getElementById('reset');
 
+// resets game
+const resetGame = () => { 
+	// use spread operator to log all cards in array:
+	cards = [...card];
+	// counter = 0 as user only gets 2 cards to turn at a time
+	count = 0;
+	// adds original classes to cards
+	cards.forEach(function (element, index){
+		element.classList.remove('card-rotate')
+		element.classList.remove('yellow');
+		element.classList.add('purple');	
+	})
+}
 
 const displayCard = (element, index) => {
 	// add classes to rotate card
@@ -48,22 +59,6 @@ const clearBoard = () => {
 	})
 }
 
-// resets game
-const resetGame = () => { 
-	// use spread operator to log all cards in array:
-	cards = [...card];
-	// counter = 0 as user only gets 2 cards to turn at a time
-	count = 0;
-	// adds original classes to cards
-	cards.forEach(function (element, index){
-		element.classList.remove('card-rotate')
-		element.classList.remove('yellow');
-		element.classList.add('purple');	
-	})
-}
-
-
-
 cards = cards.forEach((element, index) => {
   element.addEventListener("click", function() {  
 
@@ -71,19 +66,11 @@ cards = cards.forEach((element, index) => {
 		console.log('first go', 'count:', count)
 		// play a card to turn
 		displayCard(element, index);
-
-		// lastCardIndex = index;
-		// lastCard = element;
-		// lastCardValue = element.classList[1];
-		// console.log('lastCardIndex:', lastCardIndex, 'index:', index);
-
 	// display the elements while count is less than 2
 	} else if(count<=2) {
 		console.log('second & last go', 'count:', count)
 		// play a card to turn
 		displayCard(element, index);
-
-		// currentCardValue = element.classList[1];
 		// THINGS TO DO:
 		// 1. CHECK IF CARD IS THE SAME ONE CLICKED
 		if(lastCardIndex === currentCardIndex) {
@@ -91,66 +78,21 @@ cards = cards.forEach((element, index) => {
 			count = 0;
 			// call displayCard again 
 			displayCard(element, index);
-
-			// checkSameCard();
 		// 2. CHECK IF IT IS A MATCH
 		} else {
 			if(currentCardValue === lastCardValue) {
-				// 2B. IF A MATCH KEEP CARDS FLIPPED OVER - maybe add to a matchedcard array?
-				console.log('cards match!')
-
-
+				// 2B. IF A MATCH KEEP CARDS FLIPPED OVER
 				currentCard.classList.remove('blue');
 				currentCard.classList.add('yellow');
 				lastCard.classList.remove('blue');
 				lastCard.classList.add('yellow');
-				// splice: at position remove item
-				// cards.splice(currentCardIndex, 1);
-				// cards.splice(lastCardIndex, 1);
-				// for(let i = 0; i< cards.length; i++) {
-				// 	// console.log(cards[i], 'cards[i]')
-				// 	if(cards[i] === lastCard) {
-				// 		console.log(cards, '1')
-				// 		cards.splice(i, 1);
-				// 		console.log(cards, '2')
-				// 	}
-				// 	if(cards[i] === currentCard) {
-				// 		cards.splice(i, 1);
-				// 	}
-				// }
 				// filter out the cards that are not equal to the current match
 				cards = cards.filter(element => {
 					console.log(element)
 					return (element !== lastCard && element !== currentCard)
 				});
-				console.log(cards)
-				// save last card before overwriting current card
-				lastCardValue = '';
-				lastCard = '';
-				lastCardIndex = '';
-				count = 0;
-
-				// push matching cards into temp array
-				// matchArray.push(lastCard);
-				// matchArray.push(element);
-				// matchArray.forEach(match => {
-				// 	match.classList.remove('blue');
-				// 	match.classList.add('yellow');
-				// })		
-				// // remove matched cards from card array
-				// cards.forEach((match, i) => {
-				// 		if(match === element ) {
-				// 			cards.splice(i,1);
-				// 		} else if(match === lastCard) {
-				// 			cards.splice(i,1);
-				// 		}					
-				// })
-				// if(cards.length === 1) {
-				// 	matchArray.push(element)
-				// }
 				// 2C. CONTINUE GAME
-				// clearBoard();				
-				// checkMatch();
+				clearBoard();				
 			// 3. IF NOT A MATCH RESET BOARD
 			} else {
 				// clear board in 1 second as 2 cards will be showing
@@ -169,8 +111,6 @@ cards = cards.forEach((element, index) => {
 	})
 });
 
-// at beginning of game show all cards then flip over - 5 seconds maybe?
-
 // if reset button is pressed
 reset.addEventListener('click', resetGame)
 
@@ -179,10 +119,7 @@ resetGame();
 
 
 // NEED TO RANDOMIZE CARDS!!!
-
-
-// LOG INDEX FOR CURRENT AND LAST - SEEM TO MATCH AT THE MOMENT?
-// CHAMGE ALL ELEMENTS TO CURRENT OR LAST TO MAKE CLEARER
+// at beginning of game show all cards then flip over - 5 seconds maybe?
 
 // TIMER TO CHANGE!
 // const timer = () => {
