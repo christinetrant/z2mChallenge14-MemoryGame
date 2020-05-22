@@ -10,7 +10,7 @@ let lastCardIndex = ''; // index of last card
 let currentCardIndex = ''; // index of current card
 let lastCard; // div of last card
 let currentCard; // div of current card
-let matchArray = []; // temp array to store matched cards
+// let matchArray = []; // temp array to store matched cards
 
 
 // DOM Strings
@@ -43,37 +43,23 @@ const clearBoard = () => {
 		element.classList.remove('card-rotate');
 		element.classList.remove('blue');
 		element.classList.add('purple');
-		// the current card value becomes the last
-		// lastCardValue = currentCardValue;
-		// lastCard = currentCard;
-		// lastCardIndex = currentCardIndex
-		
-		// clear current value so it can be reassigned
-		// currentCardValue = '';
 		// reset count
 		count = 0;
 	})
 }
 
 // resets game
-const init = () => { 
+const resetGame = () => { 
 	// use spread operator to log all cards in array:
 	cards = [...card];
 	// counter = 0 as user only gets 2 cards to turn at a time
 	count = 0;
-	// to store value of card so we can match it
-	// lastCardValue = ''; // e.g. unicorn
-	// lastCardIndex = ''; // index of last card
-	// currentCardValue = ''; // e.g. tiger
-	matchArray = []; // temp array to store matched cards
-	lastCard; // div of last card
+	// adds original classes to cards
 	cards.forEach(function (element, index){
 		element.classList.remove('card-rotate')
 		element.classList.remove('yellow');
 		element.classList.add('purple');	
 	})
-		// cards = [];
-		// cards = [...card]
 }
 
 
@@ -121,17 +107,23 @@ cards = cards.forEach((element, index) => {
 				// splice: at position remove item
 				// cards.splice(currentCardIndex, 1);
 				// cards.splice(lastCardIndex, 1);
-				for(let i = 0; i< cards.length; i++) {
-					// console.log(cards[i], 'cards[i]')
-					if(cards[i] === lastCard) {
-						console.log(cards, '1')
-						cards.splice(i, 1);
-						console.log(cards, '2')
-					}
-					if(cards[i] === currentCard) {
-						cards.splice(i, 1);
-					}
-				}
+				// for(let i = 0; i< cards.length; i++) {
+				// 	// console.log(cards[i], 'cards[i]')
+				// 	if(cards[i] === lastCard) {
+				// 		console.log(cards, '1')
+				// 		cards.splice(i, 1);
+				// 		console.log(cards, '2')
+				// 	}
+				// 	if(cards[i] === currentCard) {
+				// 		cards.splice(i, 1);
+				// 	}
+				// }
+				// filter out the cards that are not equal to the current match
+				cards = cards.filter(element => {
+					console.log(element)
+					return (element !== lastCard && element !== currentCard)
+				});
+				console.log(cards)
 				// save last card before overwriting current card
 				lastCardValue = '';
 				lastCard = '';
@@ -170,7 +162,7 @@ cards = cards.forEach((element, index) => {
 		clearBoard();
 	}
 	// if there are no more cards in array - user has won
-	if(cards.length<=1) {
+	if(cards.length<1) {
 		console.log('You win! Game Over')
 	}
 	
@@ -180,10 +172,10 @@ cards = cards.forEach((element, index) => {
 // at beginning of game show all cards then flip over - 5 seconds maybe?
 
 // if reset button is pressed
-reset.addEventListener('click', init)
+reset.addEventListener('click', resetGame)
 
 // Call init function to begin game;
-init();
+resetGame();
 
 
 // NEED TO RANDOMIZE CARDS!!!
@@ -191,3 +183,17 @@ init();
 
 // LOG INDEX FOR CURRENT AND LAST - SEEM TO MATCH AT THE MOMENT?
 // CHAMGE ALL ELEMENTS TO CURRENT OR LAST TO MAKE CLEARER
+
+// TIMER TO CHANGE!
+// const timer = () => {
+//     var i = 1;
+//     var timer = setInterval(function() {
+//         console.log(i);
+//         i++;
+//         if(i > 10) {
+//             clearInterval(timer);
+//         }
+//     }, 1000);
+// }
+
+// timer();
