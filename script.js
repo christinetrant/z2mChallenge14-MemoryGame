@@ -43,6 +43,57 @@ const playGame = () => {
 	reset.addEventListener('click', resetGame)
 	timeUl.classList.add('show');
 	movesUl.classList.add('show');
+
+
+	cards.forEach((element, index) => {
+  element.addEventListener("click", function() {  
+
+  	if(count<1) {
+			console.log('first go', 'count:', count)
+			// play a card to turn
+			displayCard(element, index);
+		// display the elements while count is less than 2
+		} else if(count<=2) {
+			console.log('second & last go', 'count:', count)
+			// play a card to turn
+			displayCard(element, index);
+			// THINGS TO DO:
+			// 1. CHECK IF CARD IS THE SAME ONE CLICKED
+			if(lastCardIndex === currentCardIndex) {
+				// reset count
+				count = 0;
+				// call displayCard again 
+				displayCard(element, index);
+			// 2. CHECK IF IT IS A MATCH
+			} else {
+				if(currentCardValue === lastCardValue) {
+					// 2B. IF A MATCH KEEP CARDS FLIPPED OVER
+					currentCard.classList.remove('blue');
+					currentCard.classList.add('yellow');
+					lastCard.classList.remove('blue');
+					lastCard.classList.add('yellow');
+					// filter out the cards that are not equal to the current match
+					cards = cards.filter(element => {
+						return (element !== lastCard && element !== currentCard)
+					});
+					// 2C. CONTINUE GAME
+					clearBoard();				
+				// 3. IF NOT A MATCH RESET BOARD
+				} else {
+					// clear board in 1 second as 2 cards will be showing
+					setTimeout(clearBoard, 1000);
+				}
+			}
+		// count equals 2 - reset count	
+		} else if(count === 2) {
+			clearBoard();
+		}
+		// if there are no more cards in array - user has won
+		if(cards.length<1) {
+			console.log('You win! Game Over')
+		}	
+	})
+});
 }
 // Event Listener for Play Game
 reset.addEventListener('click', playGame);
@@ -100,55 +151,7 @@ const clearBoard = () => {
 	})
 }
 
-cards = cards.forEach((element, index) => {
-  element.addEventListener("click", function() {  
 
-  	if(count<1) {
-			console.log('first go', 'count:', count)
-			// play a card to turn
-			displayCard(element, index);
-		// display the elements while count is less than 2
-		} else if(count<=2) {
-			console.log('second & last go', 'count:', count)
-			// play a card to turn
-			displayCard(element, index);
-			// THINGS TO DO:
-			// 1. CHECK IF CARD IS THE SAME ONE CLICKED
-			if(lastCardIndex === currentCardIndex) {
-				// reset count
-				count = 0;
-				// call displayCard again 
-				displayCard(element, index);
-			// 2. CHECK IF IT IS A MATCH
-			} else {
-				if(currentCardValue === lastCardValue) {
-					// 2B. IF A MATCH KEEP CARDS FLIPPED OVER
-					currentCard.classList.remove('blue');
-					currentCard.classList.add('yellow');
-					lastCard.classList.remove('blue');
-					lastCard.classList.add('yellow');
-					// filter out the cards that are not equal to the current match
-					cards = cards.filter(element => {
-						return (element !== lastCard && element !== currentCard)
-					});
-					// 2C. CONTINUE GAME
-					clearBoard();				
-				// 3. IF NOT A MATCH RESET BOARD
-				} else {
-					// clear board in 1 second as 2 cards will be showing
-					setTimeout(clearBoard, 1000);
-				}
-			}
-		// count equals 2 - reset count	
-		} else if(count === 2) {
-			clearBoard();
-		}
-		// if there are no more cards in array - user has won
-		if(cards.length<1) {
-			console.log('You win! Game Over')
-		}	
-	})
-});
 
 
 
