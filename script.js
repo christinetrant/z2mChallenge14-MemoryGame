@@ -20,6 +20,7 @@ const reset = document.getElementById('reset');
 // ul to hide and display
 const timeUl = document.getElementsByClassName('time-ul')[0]
 const movesUl = document.getElementsByClassName('moves-ul')[0]
+const resetUl = document.getElementsByClassName('reset-ul')[0]
 
 // TIMER TO CHANGE!
 const timer = () => {
@@ -36,6 +37,8 @@ const timer = () => {
 
 // Play Game
 const playGame = () => {
+	moves.textContent = 0;
+	time.textContent = 0;
 	// Call init function to begin game;
 	resetGame();
 	// change text
@@ -44,7 +47,10 @@ const playGame = () => {
 	reset.addEventListener('click', resetGame)
 	timeUl.classList.add('show');
 	movesUl.classList.add('show');
-
+	resetUl.classList.add('show');
+	
+	// start timer
+	timer();
 
 	cards.forEach((element, index) => {
   element.addEventListener("click", function() {  
@@ -99,9 +105,8 @@ const playGame = () => {
 		if(cards.length<1) {
 			console.log('You win! Game Over')
 			winModal.style.display = "block";
-			// moves.textContent = userMove;
 			userTime.textContent = `Time Taken: ${time.textContent}`;
-userMoves.textContent = `Total Moves: ${userMove}`;
+			userMoves.textContent = `Total Moves: ${userMove}`;
 		}	
 	})
 });
@@ -111,12 +116,15 @@ reset.addEventListener('click', playGame);
 
 // resets game
 const resetGame = () => { 
+
+	// call modal to begin game when ready
+	playModal.style.display = 'block';
 	// use spread operator to log all cards in array:
 	cards = [...card];
 	// counter = 0 as user only gets 2 cards to turn at a time
 	count = 0;
-	// start timer
-	timer();
+	userMove = 0;
+	
 	// adds original classes to cards
 	cards.forEach(function (element, index){
 		element.classList.remove('card-rotate')
@@ -124,6 +132,10 @@ const resetGame = () => {
 		element.classList.add('purple');	
 	})
 }
+
+
+
+
 // Shuffle Cards [Fisher Yates Shuffle]
 for(let i = cards.length - 1; i > 0; i--){
   const j = Math.floor(Math.random() * i)
@@ -188,23 +200,12 @@ playBtn.addEventListener('click', function() {
   // playModal.style.display = "block";
   playGame();
   playModal.style.display = "none";
-})
 
-// When the user clicks on <span> (x), close the modal
-span.addEventListener('click', function() {
-  playModal.style.display = "none";
-})
-// When the user clicks anywhere outside of the modal, close it
-window.addEventListener('click', function(event) {
-  if (event.target == playModal) {
-    playModal.style.display = "none";
-  }
 })
 
 const userTime = document.getElementById('userTime');
 const userMoves = document.getElementById('userMoves');
 // Win Game Modal!
-// Get the modal
 const winModal = document.getElementById("winModal");
 // Get the button that will play a new game
 const winBtn = document.getElementById("winBtn");
@@ -214,17 +215,5 @@ const winSpan = document.getElementsByClassName("close")[0];
 winBtn.addEventListener('click', function() {
   playGame();
   winModal.style.display = "none";
+  playModal.style.display = "none";
 })
-// When the user clicks on <span> (x), close the modal
-span.addEventListener('click', function() {
-  winModal.style.display = "none";
-})
-// When the user clicks anywhere outside of the modal, close it
-window.addEventListener('click', function(event) {
-  if (event.target == winModal) {
-    winModal.style.display = "none";
-  }
-})
-
-
-

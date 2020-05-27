@@ -12,11 +12,13 @@ body {
 	justify-content: center;
   width: 100%;
 }
+h1, h2, h3, h4, h5, h6 {  font-family: 'Pacifico', cursive; }
 h1 {
-	font-family: 'Pacifico', cursive;
+  text-shadow: 2px 2px #e9f2fc;
   font-size: 2.5em;
 	border-bottom: 2px solid #C1F4FA;
 	border-right: 2px solid #C1F4FA;
+  border-radius: 0 0 25px 0;
 	width: 400px;
 	text-align: center;
 	margin:0 0 30px 0;
@@ -26,6 +28,7 @@ h1 {
 	-o-box-shadow: 4px 4px 5px #888888;
 	box-shadow: 4px 4px 5px #888888;
 }
+h2 { font-size: 2em; }
 .score-board {
   /*background: rgba(255, 255, 255, 0.6);*/
   border-radius: 0 0 25px 25px;
@@ -122,7 +125,7 @@ ul {
 }
 
 
-.time-ul, .moves-ul { display: none; } 
+.time-ul, .moves-ul, .reset-ul { display: none; } 
 .show { display: block; }
 .hide { display: none; }
 /*.droplet {
@@ -209,7 +212,7 @@ ul {
 .modal {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  padding-top: 35%; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -222,12 +225,13 @@ ul {
 /* Modal Content */
 .modal-content {
   position: relative;
-  background-color: #fefefe;
   margin: auto;
-  padding: 0;
-  border: 1px solid #888;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius:25px;
+  border:1px solid #bbb;
   width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
@@ -246,7 +250,7 @@ ul {
 }
 
 /* The Close Button */
-.close {
+/*.close {
   color: white;
   float: right;
   font-size: 28px;
@@ -258,10 +262,20 @@ ul {
   color: #000;
   text-decoration: none;
   cursor: pointer;
-}
+}*/
 
-.modal-body {
-  padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
+button {
+  background: rgba(233,242,252, 0.75);
+  border-radius: 15px;
+  font-family: 'Pacifico', cursive;
+  font-size: 2em;
+  border-bottom: 2px solid #C1F4FA;
+  border-right: 2px solid #C1F4FA;
+  text-align: center;
+  margin:0 0 30px 0;
+  -moz-box-shadow: 4px 4px 5px #888888;
+  -ms-box-shadow: 4px 4px 5px #888888;
+  -webkit-box-shadow: 4px 4px 5px #888888;
+  -o-box-shadow: 4px 4px 5px #888888;
+  box-shadow: 4px 4px 5px #888888;
 }
