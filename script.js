@@ -16,6 +16,10 @@ const time = document.getElementById('timer');
 const moves = document.getElementById('moves');
 const reset = document.getElementById('reset');
 
+// ul to hide and display
+const timeUl = document.getElementsByClassName('time-ul')[0]
+const movesUl = document.getElementsByClassName('moves-ul')[0]
+
 // TIMER TO CHANGE!
 const timer = () => {
   let i = 1;
@@ -28,6 +32,20 @@ const timer = () => {
     }
   }, 1000);
 }
+
+// Play Game
+const playGame = () => {
+	// Call init function to begin game;
+	resetGame();
+	// change text
+	reset.textContent = 'Reset Game';
+	// if reset button is pressed
+	reset.addEventListener('click', resetGame)
+	timeUl.classList.add('show');
+	movesUl.classList.add('show');
+}
+// Event Listener for Play Game
+reset.addEventListener('click', playGame);
 
 // resets game
 const resetGame = () => { 
@@ -134,18 +152,11 @@ cards = cards.forEach((element, index) => {
 
 
 
-// Call init function to begin game;
-resetGame();
 
 
 // NEED TO RANDOMIZE CARDS!!!
 // at beginning of game show all cards then flip over - 5 seconds maybe?
 
-const playGame = () => {
-	reset.textContent = 'Reset Game';
-	// if reset button is pressed
-	reset.addEventListener('click', resetGame)
-}
 
 
 

@@ -122,6 +122,9 @@ ul {
 }
 
 
+.time-ul, .moves-ul { display: none; } 
+.show { display: block; }
+.hide { display: none; }
 /*.droplet {
   background: mediumaquamarine;
   border-radius: 2% 50%;
