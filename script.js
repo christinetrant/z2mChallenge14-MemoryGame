@@ -216,9 +216,7 @@ const resetGame = () => {
 	shuffleCards(cards);
 	// assignCards();
 	let classTest = [];
-	console.log('classtest', classTest) 
 	let textTest = [];
-	console.log('texttest', textTest)	
 	classTest = testCards.map(item => item.class)
 	textTest = testCards.map(item => item.text)
 	// loop through cards to add classes and value of shuffled cards
