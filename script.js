@@ -26,20 +26,20 @@ const resetUl = document.getElementsByClassName('reset-ul')[0]
 const timer = () => {
   let i = 1;
   let timer = setInterval(function() {
-    // console.log(i);
+    console.log(i);
     time.textContent = i;
     i++;
-    if(i > 10) {
-       clearInterval(timer);
+    // stop timer if game is reset or game is won
+    if(playModal.style.display === 'block' || winModal.style.display === 'block') {
+       clearTimeout(timer);
+       i=0;
     }
-  }, 1000);
+  }, 1000); //roughly 1 second
 }
 
 // Play Game
 const playGame = () => {
-	moves.textContent = 0;
-	time.textContent = 0;
-	// Call init function to begin game;
+	// Call init function to reset game stats and cards;
 	resetGame();
 	// change text
 	reset.textContent = 'Reset Game';
@@ -105,7 +105,7 @@ const playGame = () => {
 		if(cards.length<1) {
 			console.log('You win! Game Over')
 			winModal.style.display = "block";
-			userTime.textContent = `Time Taken: ${time.textContent}`;
+			userTime.textContent = `Time Taken: ${time.textContent} seconds`;
 			userMoves.textContent = `Total Moves: ${userMove}`;
 		}	
 	})
@@ -124,7 +124,8 @@ const resetGame = () => {
 	// counter = 0 as user only gets 2 cards to turn at a time
 	count = 0;
 	userMove = 0;
-	
+	moves.textContent = 0;
+	time.textContent = 0;
 	// adds original classes to cards
 	cards.forEach(function (element, index){
 		element.classList.remove('card-rotate')
