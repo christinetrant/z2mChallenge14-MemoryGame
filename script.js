@@ -3,6 +3,7 @@ const card = document.getElementsByClassName('card');
 let cards = [...card];
 // counter = 0 as user only gets 2 cards to turn at a time
 let count = 0;
+let userMove = 0;
 // to store value of card so we can match it
 let lastCardValue = ''; // e.g. unicorn
 let currentCardValue = ''; // e.g. tiger
@@ -77,21 +78,30 @@ const playGame = () => {
 						return (element !== lastCard && element !== currentCard)
 					});
 					// 2C. CONTINUE GAME
-					clearBoard();				
+					clearBoard();	
+					userMove++;
+					moves.textContent = userMove;			
 				// 3. IF NOT A MATCH RESET BOARD
 				} else {
 					// clear board in 1 second as 2 cards will be showing
 					setTimeout(clearBoard, 1000);
+					userMove++;
+					moves.textContent = userMove;
 				}
 			}
 		// count equals 2 - reset count	
 		} else if(count === 2) {
 			clearBoard();
+			userMove++;
+			moves.textContent = userMove;
 		}
 		// if there are no more cards in array - user has won
 		if(cards.length<1) {
 			console.log('You win! Game Over')
 			winModal.style.display = "block";
+			// moves.textContent = userMove;
+			userTime.textContent = `Time Taken: ${time.textContent}`;
+userMoves.textContent = `Total Moves: ${userMove}`;
 		}	
 	})
 });
@@ -191,23 +201,20 @@ window.addEventListener('click', function(event) {
   }
 })
 
-
+const userTime = document.getElementById('userTime');
+const userMoves = document.getElementById('userMoves');
 // Win Game Modal!
 // Get the modal
 const winModal = document.getElementById("winModal");
-
-// Get the button that opens the modal
+// Get the button that will play a new game
 const winBtn = document.getElementById("winBtn");
-
 // Get the <span> element that closes the modal
 const winSpan = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
+// When the user clicks the button play a new game
 winBtn.addEventListener('click', function() {
   playGame();
   winModal.style.display = "none";
 })
-
 // When the user clicks on <span> (x), close the modal
 span.addEventListener('click', function() {
   winModal.style.display = "none";
@@ -218,3 +225,6 @@ window.addEventListener('click', function(event) {
     winModal.style.display = "none";
   }
 })
+
+
+
