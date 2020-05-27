@@ -132,8 +132,7 @@ cards = cards.forEach((element, index) => {
 	})
 });
 
-// if reset button is pressed
-reset.addEventListener('click', resetGame)
+
 
 // Call init function to begin game;
 resetGame();
@@ -142,3 +141,35 @@ resetGame();
 // NEED TO RANDOMIZE CARDS!!!
 // at beginning of game show all cards then flip over - 5 seconds maybe?
 
+const playGame = () => {
+	reset.textContent = 'Reset Game';
+	// if reset button is pressed
+	reset.addEventListener('click', resetGame)
+}
+
+
+
+// Get the modal
+const modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+const btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+const span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.addEventListener('click', function() {
+  modal.style.display = "block";
+})
+
+// When the user clicks on <span> (x), close the modal
+span.addEventListener('click', function() {
+  modal.style.display = "none";
+})
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+})
