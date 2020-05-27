@@ -112,31 +112,22 @@ const shuffleCards = (arr) => {
 	} 
 	return arr;
 }
-
-let classTest = testCards.map(item => item.class)
-let textTest = testCards.map(item => item.text)
-
-for(let i=0; i<cards.length;i++) {
-	// for(let j=0; j<classTest.length;j++) {
-		classTest.map((item, i, arr) => {
-		cards[i].classList.add(item)
-	// }
-	})
-}
-// cards.map(obj => {
-// 	testCards.map(c => {
-// 	obj.classList.add(c.class)
-// 	obj.classList.add('purple')
-// 	obj.childNodes[1].childNodes[3].textContent = c.text
+// const assignCards = () => {
+// 	let classTest = testCards.map(item => item.class)
+// 	let textTest = testCards.map(item => item.text)
+// 	// loop through cards to add classes and value of shuffled cards
+// 	// add classes: animal and purple
+// 	classTest.map((item, i) => {
+// 		return cards[i].classList.add(item)
+// 		// cards[i].classList.add('purple')
 // 	})
-// })
-// arr[i].childNodes[1].childNodes[3].textContent = temp.text
-		// arr[i].classList.add(temp.text)
-// cards.forEach(item => {
-// 	item.childNodes[1].childNodes[3].textContent = .text
-// 	item.classList.add(it.class)
-// 	item.classList.add('purple')
-// })
+// 	textTest.map((item, i) => {
+// 		return cards[i].childNodes[1].childNodes[3].textContent = item;
+// 	})
+// 	console.log('text', textTest)
+// 	console.log('class', classTest)
+// 	return cards;
+// }
 
 // Play Game
 const playGame = () => {
@@ -221,13 +212,29 @@ const resetGame = () => {
 	playModal.style.display = 'block';
 	// use spread operator to log all cards in array:
 	cards = [...card];
+	// Shuffle Cards
+	shuffleCards(cards);
+	// assignCards();
+	let classTest = [];
+	console.log('classtest', classTest) 
+	let textTest = [];
+	console.log('texttest', textTest)	
+	classTest = testCards.map(item => item.class)
+	textTest = testCards.map(item => item.text)
+	// loop through cards to add classes and value of shuffled cards
+	// add classes: animal and purple
+	classTest.map((item, i) => {
+		return cards[i].classList.add(item)
+		// cards[i].classList.add('purple')
+	})
+	textTest.map((item, i) => {
+		return cards[i].childNodes[1].childNodes[3].textContent = item;
+	})
 	// counter = 0 as user only gets 2 cards to turn at a time
 	count = 0;
 	userMove = 0;
 	moves.textContent = 0;
 	time.textContent = 0;
-	// Shuffle Cards
-	// shuffleCards(cards);
 	// adds original classes to cards
 	cards.forEach((element, index) => {
 		element.classList.remove('card-rotate')
