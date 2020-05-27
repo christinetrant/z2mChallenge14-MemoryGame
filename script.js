@@ -91,6 +91,7 @@ const playGame = () => {
 		// if there are no more cards in array - user has won
 		if(cards.length<1) {
 			console.log('You win! Game Over')
+			winModal.style.display = "block";
 		}	
 	})
 });
@@ -164,26 +165,56 @@ const clearBoard = () => {
 
 
 // Get the modal
-const modal = document.getElementById("myModal");
+const playModal = document.getElementById("playModal");
 
 // Get the button that opens the modal
-const btn = document.getElementById("myBtn");
+const playBtn = document.getElementById("playBtn");
 
 // Get the <span> element that closes the modal
 const span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
-btn.addEventListener('click', function() {
-  modal.style.display = "block";
+playBtn.addEventListener('click', function() {
+  // playModal.style.display = "block";
+  playGame();
+  playModal.style.display = "none";
 })
 
 // When the user clicks on <span> (x), close the modal
 span.addEventListener('click', function() {
-  modal.style.display = "none";
+  playModal.style.display = "none";
 })
 // When the user clicks anywhere outside of the modal, close it
 window.addEventListener('click', function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == playModal) {
+    playModal.style.display = "none";
+  }
+})
+
+
+// Win Game Modal!
+// Get the modal
+const winModal = document.getElementById("winModal");
+
+// Get the button that opens the modal
+const winBtn = document.getElementById("winBtn");
+
+// Get the <span> element that closes the modal
+const winSpan = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+winBtn.addEventListener('click', function() {
+  playGame();
+  winModal.style.display = "none";
+})
+
+// When the user clicks on <span> (x), close the modal
+span.addEventListener('click', function() {
+  winModal.style.display = "none";
+})
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', function(event) {
+  if (event.target == winModal) {
+    winModal.style.display = "none";
   }
 })

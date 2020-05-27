@@ -10,20 +10,36 @@
 	<div class="wrapper">
 		
 		<!-- Trigger/Open The Modal -->
-		<button id="myBtn">Open Modal</button>
+		<!-- <button id="playBtn">Play Game</button> -->
 
 		<!-- The Modal -->
-		<div id="myModal" class="modal">
-
+		<div id="playModal" class="playModal modal">
 		  <!-- Modal content -->
 		  <div class="modal-content">
-
 		    <div class="modal-body">
 		    	<span class="close">&times;</span>
-		      <p>You win!!!</p>
+		      <p>Add rules here</p>
+		      <button id="playBtn">Play Game</button>
 		    </div>
 		  </div>
+		</div>
 
+
+		<!-- Modal for won game -->
+		<!-- <button id="playBtn">Play Game</button> -->
+
+		<!-- The Modal -->
+		<div id="winModal" class="winModal modal">
+		  <!-- Modal content -->
+		  <div class="modal-content">
+		    <div class="modal-body">
+		    	<span class="close">&times;</span>
+		      <p>You win the game!</p>
+		      <p>Time:</p>
+		      <p>Moves: </p>
+		      <button id="winBtn">Play Game</button>
+		    </div>
+		  </div>
 		</div>
 
 	</div>
@@ -43,7 +59,7 @@
 						<li id="moves">Moves:</li>
 					</ul>
 					<ul class="reset-ul">
-						<!-- <li>Reset Game</li> -->
+						<!-- <li id="reset">Reset Game</li> -->
 						<li id="reset">Play Game</li>
 					</ul>
 				</ul>
