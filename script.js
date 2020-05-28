@@ -1,6 +1,6 @@
 const card = document.getElementsByClassName('card');
 // use spread operator to log all cards in array:
-let cards = [...card];
+// let cards = [...card];
 // counter = 0 as user only gets 2 cards to turn at a time
 let count = 0;
 let userMove = 0;
@@ -101,17 +101,45 @@ let testCards = [
 ]
 
 // Shuffle Cards
-const shuffleCards = (arr) => {
+const shuffleCards = () => {
 	// Shuffle Cards [Fisher Yates Shuffle]
-	for(let i = arr.length - 1; i > 0; i--){
+	for(let i = testCards.length - 1; i > 0; i--){
 	  const j = Math.floor(Math.random() * i);
 	  // swap elements array[i] and array[j]
-	  const temp = arr[i];
-	 	arr[i] = arr[j];
-	  arr[j] = temp;
+	  const temp = testCards[i];
+	 	testCards[i] = testCards[j];
+	  testCards[j] = temp;
 	} 
-	return arr;
+	let classTest = [];
+	let textTest = [];
+
+	// // need to remove all classes in case previous game was played:
+	// cards.forEach((element, index) => {
+	// 	// remove classes except card
+	// 	element.classList = 'card';
+	// 	// emoji text
+	// 	element.childNodes[1].childNodes[3].textContent = '';
+	// })
+
+	classTest = testCards.map(item => item.class)
+	textTest = testCards.map(item => item.text)
+	// loop through cards to add classes and value of shuffled cards
+	// add classes: animal and purple
+	classTest.map((item, i) => {
+		cards[i].classList.add(item)
+		cards[i].classList.add('purple')
+		// return cards
+	})
+	textTest.map((item, i) => {
+		cards[i].childNodes[1].childNodes[3].textContent = item;
+	})
+	// console.log(textTest)
+	// return cards;
 }
+
+
+
+
 // const assignCards = () => {
 // 	let classTest = testCards.map(item => item.class)
 // 	let textTest = testCards.map(item => item.text)
@@ -171,6 +199,9 @@ const playGame = () => {
 					currentCard.classList.add('yellow');
 					lastCard.classList.remove('blue');
 					lastCard.classList.add('yellow');
+					console.log('Match!')
+					console.log('current', currentCard)
+					console.log('last', lastCard)
 					// filter out the cards that are not equal to the current match
 					cards = cards.filter(element => {
 						return (element !== lastCard && element !== currentCard)
@@ -208,37 +239,29 @@ reset.addEventListener('click', playGame);
 
 // resets game
 const resetGame = () => { 
-	// call modal to begin game when ready
-	playModal.style.display = 'block';
-	// use spread operator to log all cards in array:
-	cards = [...card];
-	// Shuffle Cards
-	shuffleCards(cards);
-	// assignCards();
-	let classTest = [];
-	let textTest = [];
-	classTest = testCards.map(item => item.class)
-	textTest = testCards.map(item => item.text)
-	// loop through cards to add classes and value of shuffled cards
-	// add classes: animal and purple
-	classTest.map((item, i) => {
-		return cards[i].classList.add(item)
-		// cards[i].classList.add('purple')
-	})
-	textTest.map((item, i) => {
-		return cards[i].childNodes[1].childNodes[3].textContent = item;
-	})
 	// counter = 0 as user only gets 2 cards to turn at a time
 	count = 0;
 	userMove = 0;
 	moves.textContent = 0;
 	time.textContent = 0;
+
+	// call modal to begin game when ready
+	playModal.style.display = 'block';
+	// use spread operator to log all cards in array:
+	cards = [...card];
+	
+	
+
 	// adds original classes to cards
 	cards.forEach((element, index) => {
 		element.classList.remove('card-rotate')
 		element.classList.remove('yellow');
 		element.classList.add('purple');	
-	})
+	})	
+
+	// Shuffle Cards
+	shuffleCards();
+
 }
 
 // Display a new card
@@ -298,7 +321,7 @@ playBtn.addEventListener('click', () => {
 winBtn.addEventListener('click', () => {
   playGame();
   winModal.style.display = "none";
-  playModal.style.display = "none";
+  // playModal.style.display = "none";
 })
 
 
