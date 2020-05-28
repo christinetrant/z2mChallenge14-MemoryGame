@@ -110,16 +110,21 @@ const shuffleCards = () => {
 	 	testCards[i] = testCards[j];
 	  testCards[j] = temp;
 	} 
+	console.log(cards);
+	// assignCards();
 	let classTest = [];
 	let textTest = [];
 
-	// // need to remove all classes in case previous game was played:
-	// cards.forEach((element, index) => {
-	// 	// remove classes except card
-	// 	element.classList = 'card';
-	// 	// emoji text
-	// 	element.childNodes[1].childNodes[3].textContent = '';
-	// })
+
+	// need to remove all classes in case previous game was played:
+	cards.forEach((element, index) => {
+		// remove classes except card
+		element.classList = 'card';
+		// emoji text
+		element.childNodes[1].childNodes[3].textContent = '';
+	})
+
+
 
 	classTest = testCards.map(item => item.class)
 	textTest = testCards.map(item => item.text)
@@ -128,7 +133,7 @@ const shuffleCards = () => {
 	classTest.map((item, i) => {
 		cards[i].classList.add(item)
 		cards[i].classList.add('purple')
-		// return cards
+		return cards
 	})
 	textTest.map((item, i) => {
 		cards[i].childNodes[1].childNodes[3].textContent = item;
@@ -164,13 +169,17 @@ const playGame = () => {
 	// change text
 	reset.textContent = 'Reset Game';
 	// if reset button is pressed
-	reset.addEventListener('click', resetGame)
+	// reset.addEventListener('click', resetGame)
+	reset.addEventListener('click', () => {
+		location.reload();
+	})
+
 	timeUl.classList.add('show');
 	movesUl.classList.add('show');
 	resetUl.classList.add('show');
 	
 	// start timer
-	// timer();
+	timer();
 
 	cards.forEach((element, index) => {
   element.addEventListener("click", function() {  
@@ -319,8 +328,8 @@ playBtn.addEventListener('click', () => {
 
 // When the user clicks the button play a new game
 winBtn.addEventListener('click', () => {
-  playGame();
-  winModal.style.display = "none";
+  location.reload();
+  // winModal.style.display = "none";
   // playModal.style.display = "none";
 })
 
