@@ -1,0 +1,283 @@
+body {
+	margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  background-image: url('mixkit-starry-night-sky-over-hills-and-water-85-original.png');
+  background-repeat: no-repeat; 
+  background-size: cover;
+}
+.wrapper {
+	display: flex;
+	align-content: center;
+	justify-content: center;
+  width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {  font-family: 'Pacifico', cursive; }
+h1 {
+  text-shadow: 2px 2px #e9f2fc;
+  font-size: 2.5em;
+	border-bottom: 2px solid #C1F4FA;
+	border-right: 2px solid #C1F4FA;
+  border-radius: 0 0 25px 0;
+	width: 400px;
+	text-align: center;
+	margin:0 0 30px 0;
+  -moz-box-shadow: 4px 4px 5px #888888;
+	-ms-box-shadow: 4px 4px 5px #888888;
+	-webkit-box-shadow: 4px 4px 5px #888888;
+	-o-box-shadow: 4px 4px 5px #888888;
+	box-shadow: 4px 4px 5px #888888;
+}
+h2 { font-size: 2em; }
+.score-board {
+  /*background: rgba(255, 255, 255, 0.6);*/
+  border-radius: 0 0 25px 25px;
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-rows: 1fr;
+}
+ul {
+  list-style-type: none; 
+  padding: 0;
+}
+.score-ul { 
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#reset {
+  cursor: pointer;
+}
+/*li { display: inline-block; }*/
+#container {
+	display: grid;
+	gap: 20px;
+	grid-template-rows: repeat(4, 1fr);
+	grid-template-columns: repeat(4, 1fr);
+  border-radius: 25px;
+  padding: 0 5% 5% 5%;
+  background: rgba(233,242,252, 0.6);
+  -moz-box-shadow: 4px 4px 5px #888888;
+  -ms-box-shadow: 4px 4px 5px #888888;
+  -webkit-box-shadow: 4px 4px 5px #888888;
+  -o-box-shadow: 4px 4px 5px #888888;
+  box-shadow: 4px 4px 5px #888888;
+}
+
+.card {
+  cursor:pointer;
+  text-align: center;
+  padding: 10px;
+  font-size:4.5rem;
+  border-radius:25px;
+  border:1px solid #bbb;
+  transition: all 0.3s linear;
+
+  /* flip card*/
+  background-color: transparent;
+  width: 100px;
+  height: 100px;
+  perspective: 1000px;
+}
+
+.card:hover {
+	box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /*text-align: center;*/
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);*/
+}
+
+.card-rotate {
+  transform: rotateY(-180deg);
+}
+.card-rotate .card-inner {
+  transform: rotateY(180deg);
+}
+/*.card-display { display: block; }
+.card-hide { display: none; }*/
+.rotate-card { transform: rotateY(180deg); }
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  /*display: block;*/
+  /*  background-color: #bbb;
+    color: black;*/
+}
+
+.card-back {
+  /*display: none;*/
+  /*background-color: #2980b9;
+  color: white;*/
+  transform: rotateY(180deg);  
+}
+
+
+.score-ul { display: none; } 
+.show { display: flex; }
+.hide { display: none; }
+
+.disable { pointer-events: none; }
+/*.droplet {
+  background: mediumaquamarine;
+  border-radius: 2% 50%;
+  height: 100px;
+  margin: 100px;
+  transition: all 3s;
+  transition-timing: ease-in-out;
+  width: 100px;
+} 
+.droplet:hover {
+    transform: rotate(180deg);
+  }*/
+
+
+
+
+
+
+
+
+
+
+
+/*https://paulund.co.uk/how-to-create-shiny-css-buttons*/
+/***********************************************************************
+ *  Yellow Background
+ **********************************************************************/
+.yellow{
+    background: #F3AAAA; /* Old browsers */
+    background: -moz-linear-gradient(top, #F3AAAA 0%, #febf04 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F3AAAA), color-stop(100%,#febf04)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #F3AAAA 0%,#febf04 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #F3AAAA 0%,#febf04 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #F3AAAA 0%,#febf04 100%); /* IE10+ */
+    background: linear-gradient(top, #F3AAAA 0%,#febf04 100%); /* W3C */
+}
+
+/***********************************************************************
+ *  Blue Background
+ **********************************************************************/
+.blue{
+    background: #7abcff; /* Old browsers */
+    background: -moz-linear-gradient(top, #28376B 0%, #3D9BE5 60%, #10C5E1 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#28376B), color-stop(60%,#3D9BE5), color-stop(100%,#10C5E1)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #28376B 0%,#3D9BE5 60%,#10C5E1 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #28376B 0%,#3D9BE5 60%,#10C5E1 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #28376B 0%,#3D9BE5 60%,#10C5E1 100%); /* IE10+ */
+    background: linear-gradient(top, #28376B 0%,#3D9BE5 60%,#10C5E1 100%); /* W3C */
+}
+
+/***********************************************************************
+ *  Purple Background
+ **********************************************************************/
+.purple {
+  background: #5051B1; /* Old browsers */
+    background: -moz-linear-gradient(top, #7F72D2 0%, #4E3B76 66%, #341E5D 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7F72D2), color-stop(66%,#4E3B76), color-stop(100%,#341E5D)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #7F72D2 0%, #4E3B76 66%, #341E5D 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #7F72D2 0%, #4E3B76 66%, #341E5D 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #7F72D2 0%, #4E3B76 66%, #341E5D 100%); /* IE10+ */
+  background: linear-gradient(top, #7F72D2 0%, #4E3B76 66%, #341E5D 100%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.winModal { display: none; }
+.playModal { display: block; }
+/* The Modal (background) */
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 35%; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  margin: auto;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius:25px;
+  border:1px solid #bbb;
+  width: 80%;
+  box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+/*.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}*/
+
+button {
+  background: rgba(233,242,252, 0.75);
+  border-radius: 15px;
+  font-family: 'Pacifico', cursive;
+  font-size: 2em;
+  border-bottom: 2px solid #C1F4FA;
+  border-right: 2px solid #C1F4FA;
+  text-align: center;
+  margin:0 0 30px 0;
+  -moz-box-shadow: 4px 4px 5px #888888;
+  -ms-box-shadow: 4px 4px 5px #888888;
+  -webkit-box-shadow: 4px 4px 5px #888888;
+  -o-box-shadow: 4px 4px 5px #888888;
+  box-shadow: 4px 4px 5px #888888;
+}
