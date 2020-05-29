@@ -1,8 +1,9 @@
 const card = document.getElementsByClassName('card');
 // use spread operator to log all cards in array:
-// let cards = [...card];
+let cards = [...card];
 // counter = 0 as user only gets 2 cards to turn at a time
-let cards, count, userMove, lastCardValue, currentCardValue, lastCardIndex, currentCardIndex, lastCard, currentCard;
+
+let count, userMove, lastCardValue, currentCardValue, lastCardIndex, currentCardIndex, lastCard, currentCard;
 
 // DOM Strings
 const time = document.getElementById('timer');
@@ -10,9 +11,10 @@ const moves = document.getElementById('moves');
 const reset = document.getElementById('reset');
 
 // ul to hide and display
-const timeUl = document.getElementsByClassName('time-ul')[0]
-const movesUl = document.getElementsByClassName('moves-ul')[0]
-const resetUl = document.getElementsByClassName('reset-ul')[0]
+const scoreBoard = document.getElementsByClassName('score-ul')[0]
+// const timeUl = document.getElementsByClassName('time-ul')[0]
+// const movesUl = document.getElementsByClassName('moves-ul')[0]
+// const resetUl = document.getElementsByClassName('reset-ul')[0]
 // update text content of moves and times
 const userTime = document.getElementById('userTime');
 const userMoves = document.getElementById('userMoves');
@@ -26,182 +28,153 @@ const playModal = document.getElementById('playModal');
 // const playBtn = document.getElementById("playBtn");
 const playBtn = document.querySelectorAll('.playBtn');
 
-let testCards = [
-	{
-		class: 'tiger',
-		text: '🐯',
-	},
-	{
-		class: 'dolphin',
-		text: '🐬',
-	},
-	{
-		class: 'unicorn', 
-		text: '🦄',
-	},
-	{
-		class: 'ghost',
-		text: '👻',
-	},
-	{
-		class: 'alien',
-		text: '👽',
-	},
-	{
-		class: 'dinosaur',
-		text: '🦖',
-	},
-	{
-		class: 'unicorn',
-		text: '🦄',
-	},
-	{
-		class: 'tiger',
-		text: '🐯',
-	},
-	{
-		class: 'fish',
-		text: '🐠',
-	},
-	{
-		class: 'ghost',
-		text: '👻',
-	},
-	{
-		class: 'ladybug',
-		text: '🐞',
-	},
-	{
-		class: 'fish',
-		text: '🐠',
-	},
-	{
-		class: 'ladybug',
-		text: '🐞',
-	},
-	{
-		class: 'dolphin',
-		text: '🐬',
-	},
-	{
-		class: 'dinosaur',
-		text: '🦖',
-	},
-	{
-		class: 'alien',
-		text: '👽',
-	},
-]
-
 // Shuffle Cards
-const shuffleCards = () => {
+const shuffleCards = (arr) => {
 	// Shuffle Cards [Fisher Yates Shuffle]
-	for(let i = testCards.length - 1; i > 0; i--){
+	for(let i = arr.length - 1; i > 0; i--){
 	  const j = Math.floor(Math.random() * i);
 	  // swap elements array[i] and array[j]
-	  const temp = testCards[i];
-	 	testCards[i] = testCards[j];
-	  testCards[j] = temp;
+	  const temp = arr[i];
+	 	arr[i] = arr[j];
+	  arr[j] = temp;
 	} 
-	let classTest = [];
-	let textTest = [];
-
-	assignCards();
+	// assignCards();
+	console.log('shuf arr', arr)
+	return arr;
 }
-// assign shuffled cards to html cards
-const assignCards = () => {
-	// need to remove all classes in case previous game was played:
-	cards.forEach((element, index) => {
-		// remove classes except card
-		element.classList = 'card';
-		// emoji text
-		element.childNodes[1].childNodes[3].textContent = '';
-	})
 
-	classTest = testCards.map(item => item.class)
-	textTest = testCards.map(item => item.text)
-	// loop through cards to add classes and value of shuffled cards
-	// add classes: animal and purple
-	classTest.map((item, i) => {
-		cards[i].classList.add(item)
-		cards[i].classList.add('purple')
-		return cards
-	})
-	textTest.map((item, i) => {
-		cards[i].childNodes[1].childNodes[3].textContent = item;
-	})
-	// console.log(textTest)
-	// return cards;
-}
 // Play Game
-const playGame = () => {
-	// Call init function to reset game stats and cards;
-	// resetGame();
+// const playGame = () => {
+// 	// Call init function to reset game stats and cards;
+// 	// resetGame();
 
-	timeUl.classList.add('show');
-	movesUl.classList.add('show');
-	resetUl.classList.add('show');
+// 	scoreBoard.classList.add('show');
+// 	// start timer
+// 	// timer();
+
+// 	// MAKE EVENT LISTENER A FUNCTION THEN WE CAN DISABLE FOR MATCHED CARDS
+// 	cards.forEach((element, index) => {
+//   element.addEventListener("click", function() {  
+
+//   	if(count<1) {
+// 			console.log('first go', 'count:', count)
+// 			// play a card to turn
+// 			displayCard(element, index);
+// 		// display the elements while count is less than 2
+		
+// 		} else if(count<=2) {
+// 			console.log('second & last go', 'count:', count)
+// 			// play a card to turn
+// 			displayCard(element, index);
+// 			// THINGS TO DO:
+// 			// 1. CHECK IF CARD IS THE SAME ONE CLICKED
+// 			if(lastCardIndex === currentCardIndex) {
+// 				// reset count
+// 				count = 0;
+// 				// call displayCard again 
+// 				displayCard(element, index);
+// 			// 2. CHECK IF IT IS A MATCH
+// 			} else {
+// 				if(currentCardValue === lastCardValue) {
+// 					// 2B. IF A MATCH KEEP CARDS FLIPPED OVER
+// 					currentCard.classList.remove('blue');
+// 					currentCard.classList.add('yellow');
+// 					currentCard.classList.add('disable');
+// 					lastCard.classList.remove('blue');
+// 					lastCard.classList.add('yellow');
+// 					lastCard.classList.add('disable');
+// 					console.log('Match!')
+					
+// 					// filter out the cards that are not equal to the current match
+// 					cards = cards.filter(element => {
+// 						return (element !== lastCard && element !== currentCard)
+// 					});
+// 					// 2C. CONTINUE GAME
+// 					clearBoard();	
+// 					userMove++;
+// 					moves.textContent = userMove;			
+// 				// 3. IF NOT A MATCH RESET BOARD
+// 				} else {
+// 					// clear board in 1 second as 2 cards will be showing
+// 					setTimeout(clearBoard, 1000);
+// 					userMove++;
+// 					moves.textContent = userMove;
+// 				}
+// 			}
+// 		// count equals 2 - reset count	
+// 		} else if(count === 2) {
+// 			clearBoard();
+// 			userMove++;
+// 			moves.textContent = userMove;
+// 		}
+// 		// if there are no more cards in array - user has won
+// 		if(cards.length<1) {
+// 			// console.log('You win! Game Over')
+// 			winModal.style.display = "block";
+// 			userTime.textContent = `Time Taken: ${time.textContent} seconds`;
+// 			userMoves.textContent = `Total Moves: ${userMove}`;
+// 		}	
+// 	})
+// });
+// }
+// // Event Listener for Play Game
+// reset.addEventListener('click', playGame);
+
+// // resets game
+// const resetGame = () => { 
 	
-	// start timer
-	timer();
+// 	// counter = 0 as user only gets 2 cards to turn at a time
+// 	count = 0;
+// 	userMove = 0;
+// 	moves.textContent = 0;
+// 	time.textContent = 0;
 
-	// MAKE EVENT LISTENER A FUNCTION THEN WE CAN DISABLE FOR MATCHED CARDS
-	cards.forEach((element, index) => {
-  	element.addEventListener("click", checkCards) 
-  })  	
-}
+// 	// to store value of card so we can match it
+// 	lastCardValue = ''; // e.g. unicorn
+// 	currentCardValue = ''; // e.g. tiger
+// 	lastCardIndex = ''; // index of last card
+// 	currentCardIndex = ''; // index of current card
+// 	lastCard = ''; // div of last card
+// 	currentCard = ''; // div of current card
 
-// Event Listener for Play Game
-reset.addEventListener('click', playGame);
-
-// resets game
-const resetGame = () => { 
-	// use spread operator to log all cards in array:
-	cards = [...card];
-	// counter = 0 as user only gets 2 cards to turn at a time
-	count = 0;
-	userMove = 0;
-	moves.textContent = 0;
-	time.textContent = 0;
-
-	// to store value of card so we can match it
-	lastCardValue = ''; // e.g. unicorn
-	currentCardValue = ''; // e.g. tiger
-	lastCardIndex = ''; // index of last card
-	currentCardIndex = ''; // index of current card
-	lastCard = ''; // div of last card
-	currentCard = ''; // div of current card
-
-	// call modal to begin game when ready
-	// playModal.style.display = 'block';
+// 	// call modal to begin game when ready
+// 	// playModal.style.display = 'block';
 	
-	playModal.style.display = "none";
-	console.log('Im here')
-	winModal.style.display = "none";
+// 	playModal.style.display = "none";
+// 	console.log('Im here')
+// 	winModal.style.display = "none";
 
-	// adds original classes to cards
-	cards.forEach((element, index) => {
-		element.classList.remove('card-rotate')
-		element.classList.remove('yellow');
-		element.classList.add('purple');	
-	})	
+// 	// adds original classes to cards
+// 	cards.forEach((element, index) => {
+// 		element.classList.remove('card-rotate')
+// 		element.classList.remove('yellow');
+// 		element.classList.add('purple');	
+// 	})	
 
-	// Shuffle Cards
-	shuffleCards();
-	reset.addEventListener('click', reloadPage)
+// 	// Shuffle Cards
+// 	let shuffled = shuffleCards(cards);
 
-	// playGame();
-}
-const reloadPage = () => location.reload();
+// 	shuffled.forEach((el, i) => {
+// 			cards[i].classList = el.classList;
+// 			cards[i].childNodes[1].childNodes[3].textContent = el.childNodes[1].childNodes[3].textContent
+// 		})
+// 	console.log(cards)
+	
+
+// 	reset.addEventListener('click', reloadPage)
+
+// 	// playGame();
+// }
+
 
 // Display a new card
-const displayCard = function(el, i) {
-	// this = el;
+const displayCard = () => {
+	console.log(event.target)
 	// add classes to rotate card
-	el.classList.add('card-rotate');
+	element.classList.add('card-rotate');
 	// change color of overturned cards
-	el.classList.remove('purple');
-	el.classList.add('blue');
+	element.classList.remove('purple');
+	element.classList.add('blue');
 	// increment value of count
 	count++;
 	// save last card before overwriting current card
@@ -209,76 +182,13 @@ const displayCard = function(el, i) {
 	lastCard = currentCard;
 	lastCardIndex = currentCardIndex
 	// card value becomes the current element
-	currentCardValue = el.classList[1];
-	currentCard = el;
-	// const index = [...this.parentElement.children].indexOf(this)
-	currentCardIndex = i;
-
-	// checkCards(el, i);
-
+	currentCardValue = element.classList[1];
+	currentCard = element;
+	currentCardIndex = index;
 }
 
 
-
-const checkCards = (el, i) => {
-if(count<1) {
-			console.log('first go', 'count:', count)
-			// play a card to turn
-			displayCard(el, i);
-		// display the elements while count is less than 2
-		
-		} else if(count<=2) {
-			console.log('second & last go', 'count:', count)
-			// play a card to turn
-			displayCard(el, i);
-			// THINGS TO DO:
-			// 1. CHECK IF CARD IS THE SAME ONE CLICKED
-			if(lastCardIndex === currentCardIndex) {
-				// reset count
-				count = 0;
-				// call displayCard again 
-				displayCard(el, i);
-			// 2. CHECK IF IT IS A MATCH
-			} else {
-				if(currentCardValue === lastCardValue) {
-					// 2B. IF A MATCH KEEP CARDS FLIPPED OVER
-					currentCard.classList.remove('blue');
-					currentCard.classList.add('yellow');
-					lastCard.classList.remove('blue');
-					lastCard.classList.add('yellow');
-					console.log('Match!')
-					
-					// filter out the cards that are not equal to the current match
-					cards = cards.filter(element => {
-						return (element !== lastCard && element !== currentCard)
-					});
-					// 2C. CONTINUE GAME
-					clearBoard();	
-					userMove++;
-					moves.textContent = userMove;			
-				// 3. IF NOT A MATCH RESET BOARD
-				} else {
-					// clear board in 1 second as 2 cards will be showing
-					setTimeout(clearBoard, 1000);
-					userMove++;
-					moves.textContent = userMove;
-				}
-			}
-		// count equals 2 - reset count	
-		} else if(count === 2) {
-			clearBoard();
-			userMove++;
-			moves.textContent = userMove;
-		}
-		// if there are no more cards in array - user has won
-		if(cards.length<1) {
-			// console.log('You win! Game Over')
-			winModal.style.display = "block";
-			userTime.textContent = `Time Taken: ${time.textContent} seconds`;
-			userMoves.textContent = `Total Moves: ${userMove}`;
-		}	
-
-}
+cards.forEach(card => card.addEventListener('click', displayCard))
 
 
 
@@ -312,12 +222,11 @@ const timer = () => {
 
 // Modal functions
 // When the user clicks the button, play game and hide modal
-for(let i=0; i<playBtn.length;i++) {
-playBtn[i].addEventListener('click', () => {
-	resetGame();
-	playGame();
-});
-}
+// for(let i=0; i<playBtn.length;i++) {
+// playBtn[i].addEventListener('click', () => {
+// 	displayCard();
+// });
+// }
 // When the user clicks the button play a new game
 // winBtn.addEventListener('click', reloadPage)
 // winBtn.addEventListener('click', resetGame)

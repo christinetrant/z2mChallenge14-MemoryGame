@@ -125,8 +125,8 @@ ul {
 }
 
 
-.time-ul, .moves-ul, .reset-ul { display: none; } 
-.show { display: block; }
+.score-ul { display: none; } 
+.show { display: flex; }
 .hide { display: none; }
 
 .disable { pointer-events: none; }

@@ -1,8 +1,8 @@
 const card = document.getElementsByClassName('card');
 // use spread operator to log all cards in array:
-// let cards = [...card];
+let cards = [...card];
 // counter = 0 as user only gets 2 cards to turn at a time
-let cards, count, userMove, lastCardValue, currentCardValue, lastCardIndex, currentCardIndex, lastCard, currentCard;
+let count, userMove, lastCardValue, currentCardValue, lastCardIndex, currentCardIndex, lastCard, currentCard;
 
 // DOM Strings
 const time = document.getElementById('timer');
@@ -10,86 +10,83 @@ const moves = document.getElementById('moves');
 const reset = document.getElementById('reset');
 
 // ul to hide and display
-const timeUl = document.getElementsByClassName('time-ul')[0]
-const movesUl = document.getElementsByClassName('moves-ul')[0]
-const resetUl = document.getElementsByClassName('reset-ul')[0]
+const scoreBoard = document.getElementsByClassName('score-ul')[0]
 // update text content of moves and times
 const userTime = document.getElementById('userTime');
 const userMoves = document.getElementById('userMoves');
 // Win Game Modal!
 const winModal = document.getElementById('winModal');
 // Get the button that will play a new game
-// const winBtn = document.getElementById("winBtn");
+const winBtn = document.getElementById("winBtn");
 // variables for modals
 const playModal = document.getElementById('playModal');
 // Get the button that opens the modal
-// const playBtn = document.getElementById("playBtn");
-const playBtn = document.querySelectorAll('.playBtn');
+const playBtn = document.getElementById("playBtn");
 
 let testCards = [
 	{
-		class: 'tiger',
-		text: '🐯',
+		cardClass: 'tiger',
+		cardText: '🐯',
 	},
 	{
-		class: 'dolphin',
-		text: '🐬',
+		cardClass: 'dolphin',
+		cardText: '🐬',
 	},
 	{
-		class: 'unicorn', 
-		text: '🦄',
+		cardClass: 'unicorn', 
+		cardText: '🦄',
 	},
 	{
-		class: 'ghost',
-		text: '👻',
+		cardClass: 'ghost',
+		cardText: '👻',
 	},
 	{
-		class: 'alien',
-		text: '👽',
+		cardClass: 'alien',
+		cardText: '👽',
 	},
 	{
-		class: 'dinosaur',
-		text: '🦖',
+		cardClass: 'dinosaur',
+		cardText: '🦖',
 	},
 	{
-		class: 'unicorn',
-		text: '🦄',
+		cardClass: 'unicorn',
+		cardText: '🦄',
 	},
 	{
-		class: 'tiger',
-		text: '🐯',
+		cardClass: 'tiger',
+		cardText: '🐯',
 	},
 	{
-		class: 'fish',
-		text: '🐠',
+		cardClass: 'fish',
+		cardText: '🐠',
 	},
 	{
-		class: 'ghost',
-		text: '👻',
+		cardClass: 'ghost',
+		cardText: '👻',
 	},
 	{
-		class: 'ladybug',
-		text: '🐞',
+		cardClass: 'ladybug',
+		cardText: '🐞',
 	},
 	{
-		class: 'fish',
-		text: '🐠',
+		cardClass: 'fish',
+		cardText: '🐠',
 	},
 	{
-		class: 'ladybug',
-		text: '🐞',
+		cardClass: 'ladybug',
+		cardText: '🐞',
 	},
 	{
-		class: 'dolphin',
-		text: '🐬',
+		cardClass: 'dolphin',
+		cardText: '🐬',
 	},
 	{
-		class: 'dinosaur',
-		text: '🦖',
+		cardClass: 'dinosaur',
+		cardText: '🦖',
 	},
 	{
-		class: 'alien',
-		text: '👽',
+		cardClass: 'alien',
+		cardText: '👽',
 	},
 ]
 
@@ -103,44 +100,35 @@ const shuffleCards = () => {
 	 	testCards[i] = testCards[j];
 	  testCards[j] = temp;
 	} 
-	let classTest = [];
-	let textTest = [];
-
-	assignCards();
-}
-// assign shuffled cards to html cards
-const assignCards = () => {
-	// need to remove all classes in case previous game was played:
+	// assignCards - need to remove all classes in case previous game was played:
 	cards.forEach((element, index) => {
 		// remove classes except card
 		element.classList = 'card';
 		// emoji text
 		element.childNodes[1].childNodes[3].textContent = '';
 	})
+	// empty arrays to store classes and textContent
+	let classTest = [];
+	let textTest = [];
 
-	classTest = testCards.map(item => item.class)
-	textTest = testCards.map(item => item.text)
+	classTest = testCards.map(item => item.cardClass)
+	textTest = testCards.map(item => item.cardText)
 	// loop through cards to add classes and value of shuffled cards
 	// add classes: animal and purple
 	classTest.map((item, i) => {
 		cards[i].classList.add(item)
 		cards[i].classList.add('purple')
-		return cards
+		return cards;
 	})
-	textTest.map((item, i) => {
-		cards[i].childNodes[1].childNodes[3].textContent = item;
-	})
-	// console.log(textTest)
-	// return cards;
+	textTest.map((item, i) => cards[i].childNodes[1].childNodes[3].textContent = item)
 }
-// Play Game
-const playGame = () => {
-	// Call init function to reset game stats and cards;
-	// resetGame();
 
-	timeUl.classList.add('show');
-	movesUl.classList.add('show');
-	resetUl.classList.add('show');
+// Play Game
+const playGame = (element, index) => {
+	// Call init function to reset game stats and cards;
+	resetGame();
+
+	scoreBoard.classList.add('show');
 	
 	// start timer
 	timer();
@@ -211,12 +199,10 @@ const playGame = () => {
 });
 }
 // Event Listener for Play Game
-reset.addEventListener('click', playGame);
+// reset.addEventListener('click', playGame);
 
 // resets game
 const resetGame = () => { 
-	// use spread operator to log all cards in array:
-	cards = [...card];
 	// counter = 0 as user only gets 2 cards to turn at a time
 	count = 0;
 	userMove = 0;
@@ -231,12 +217,11 @@ const resetGame = () => {
 	lastCard = ''; // div of last card
 	currentCard = ''; // div of current card
 
-	// call modal to begin game when ready
-	// playModal.style.display = 'block';
-	
 	playModal.style.display = "none";
-	console.log('Im here')
 	winModal.style.display = "none";
+
+	// use spread operator to log all cards in array:
+	cards = [...card];
 
 	// adds original classes to cards
 	cards.forEach((element, index) => {
@@ -248,8 +233,6 @@ const resetGame = () => {
 	// Shuffle Cards
 	shuffleCards();
 	reset.addEventListener('click', reloadPage)
-
-	// playGame();
 }
 const reloadPage = () => location.reload();
 
@@ -301,14 +284,10 @@ const timer = () => {
 
 // Modal functions
 // When the user clicks the button, play game and hide modal
-for(let i=0; i<playBtn.length;i++) {
-playBtn[i].addEventListener('click', () => {
-	resetGame();
-	playGame();
-});
-}
+playBtn.addEventListener('click', playGame);
+
 // When the user clicks the button play a new game
-// winBtn.addEventListener('click', reloadPage)
+winBtn.addEventListener('click', reloadPage)
 // winBtn.addEventListener('click', resetGame)
 
 // at beginning of game show all cards then flip over - 5 seconds maybe?
