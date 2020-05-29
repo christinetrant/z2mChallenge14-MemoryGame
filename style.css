@@ -128,6 +128,8 @@ ul {
 .time-ul, .moves-ul, .reset-ul { display: none; } 
 .show { display: block; }
 .hide { display: none; }
+
+.disable { pointer-events: none; }
 /*.droplet {
   background: mediumaquamarine;
   border-radius: 2% 50%;

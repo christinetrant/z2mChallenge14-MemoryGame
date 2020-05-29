@@ -2,15 +2,7 @@ const card = document.getElementsByClassName('card');
 // use spread operator to log all cards in array:
 // let cards = [...card];
 // counter = 0 as user only gets 2 cards to turn at a time
-let count = 0;
-let userMove = 0;
-// to store value of card so we can match it
-let lastCardValue = ''; // e.g. unicorn
-let currentCardValue = ''; // e.g. tiger
-let lastCardIndex = ''; // index of last card
-let currentCardIndex = ''; // index of current card
-let lastCard; // div of last card
-let currentCard; // div of current card
+let cards, count, userMove, lastCardValue, currentCardValue, lastCardIndex, currentCardIndex, lastCard, currentCard;
 
 // DOM Strings
 const time = document.getElementById('timer');
@@ -21,17 +13,18 @@ const reset = document.getElementById('reset');
 const timeUl = document.getElementsByClassName('time-ul')[0]
 const movesUl = document.getElementsByClassName('moves-ul')[0]
 const resetUl = document.getElementsByClassName('reset-ul')[0]
-// variables for modals
-const playModal = document.getElementById("playModal");
-// Get the button that opens the modal
-const playBtn = document.getElementById("playBtn");
+// update text content of moves and times
 const userTime = document.getElementById('userTime');
 const userMoves = document.getElementById('userMoves');
 // Win Game Modal!
-const winModal = document.getElementById("winModal");
+const winModal = document.getElementById('winModal');
 // Get the button that will play a new game
-const winBtn = document.getElementById("winBtn");
-
+// const winBtn = document.getElementById("winBtn");
+// variables for modals
+const playModal = document.getElementById('playModal');
+// Get the button that opens the modal
+// const playBtn = document.getElementById("playBtn");
+const playBtn = document.querySelectorAll('.playBtn');
 
 let testCards = [
 	{
@@ -110,12 +103,13 @@ const shuffleCards = () => {
 	 	testCards[i] = testCards[j];
 	  testCards[j] = temp;
 	} 
-	console.log(cards);
-	// assignCards();
 	let classTest = [];
 	let textTest = [];
 
-
+	assignCards();
+}
+// assign shuffled cards to html cards
+const assignCards = () => {
 	// need to remove all classes in case previous game was played:
 	cards.forEach((element, index) => {
 		// remove classes except card
@@ -123,8 +117,6 @@ const shuffleCards = () => {
 		// emoji text
 		element.childNodes[1].childNodes[3].textContent = '';
 	})
-
-
 
 	classTest = testCards.map(item => item.class)
 	textTest = testCards.map(item => item.text)
@@ -141,38 +133,10 @@ const shuffleCards = () => {
 	// console.log(textTest)
 	// return cards;
 }
-
-
-
-
-// const assignCards = () => {
-// 	let classTest = testCards.map(item => item.class)
-// 	let textTest = testCards.map(item => item.text)
-// 	// loop through cards to add classes and value of shuffled cards
-// 	// add classes: animal and purple
-// 	classTest.map((item, i) => {
-// 		return cards[i].classList.add(item)
-// 		// cards[i].classList.add('purple')
-// 	})
-// 	textTest.map((item, i) => {
-// 		return cards[i].childNodes[1].childNodes[3].textContent = item;
-// 	})
-// 	console.log('text', textTest)
-// 	console.log('class', classTest)
-// 	return cards;
-// }
-
 // Play Game
 const playGame = () => {
 	// Call init function to reset game stats and cards;
-	resetGame();
-	// change text
-	reset.textContent = 'Reset Game';
-	// if reset button is pressed
-	// reset.addEventListener('click', resetGame)
-	reset.addEventListener('click', () => {
-		location.reload();
-	})
+	// resetGame();
 
 	timeUl.classList.add('show');
 	movesUl.classList.add('show');
@@ -181,6 +145,7 @@ const playGame = () => {
 	// start timer
 	timer();
 
+	// MAKE EVENT LISTENER A FUNCTION THEN WE CAN DISABLE FOR MATCHED CARDS
 	cards.forEach((element, index) => {
   element.addEventListener("click", function() {  
 
@@ -189,6 +154,7 @@ const playGame = () => {
 			// play a card to turn
 			displayCard(element, index);
 		// display the elements while count is less than 2
+		
 		} else if(count<=2) {
 			console.log('second & last go', 'count:', count)
 			// play a card to turn
@@ -206,11 +172,12 @@ const playGame = () => {
 					// 2B. IF A MATCH KEEP CARDS FLIPPED OVER
 					currentCard.classList.remove('blue');
 					currentCard.classList.add('yellow');
+					currentCard.classList.add('disable');
 					lastCard.classList.remove('blue');
 					lastCard.classList.add('yellow');
+					lastCard.classList.add('disable');
 					console.log('Match!')
-					console.log('current', currentCard)
-					console.log('last', lastCard)
+					
 					// filter out the cards that are not equal to the current match
 					cards = cards.filter(element => {
 						return (element !== lastCard && element !== currentCard)
@@ -248,18 +215,28 @@ reset.addEventListener('click', playGame);
 
 // resets game
 const resetGame = () => { 
+	// use spread operator to log all cards in array:
+	cards = [...card];
 	// counter = 0 as user only gets 2 cards to turn at a time
 	count = 0;
 	userMove = 0;
 	moves.textContent = 0;
 	time.textContent = 0;
 
+	// to store value of card so we can match it
+	lastCardValue = ''; // e.g. unicorn
+	currentCardValue = ''; // e.g. tiger
+	lastCardIndex = ''; // index of last card
+	currentCardIndex = ''; // index of current card
+	lastCard = ''; // div of last card
+	currentCard = ''; // div of current card
+
 	// call modal to begin game when ready
-	playModal.style.display = 'block';
-	// use spread operator to log all cards in array:
-	cards = [...card];
+	// playModal.style.display = 'block';
 	
-	
+	playModal.style.display = "none";
+	console.log('Im here')
+	winModal.style.display = "none";
 
 	// adds original classes to cards
 	cards.forEach((element, index) => {
@@ -270,8 +247,11 @@ const resetGame = () => {
 
 	// Shuffle Cards
 	shuffleCards();
+	reset.addEventListener('click', reloadPage)
 
+	// playGame();
 }
+const reloadPage = () => location.reload();
 
 // Display a new card
 const displayCard = (element, index) => {
@@ -294,7 +274,7 @@ const displayCard = (element, index) => {
 
 // function turns cards back over face down
 const clearBoard = () => { 
-	cards.forEach(function (element, index){
+	cards.forEach((element, index) => {
 		element.classList.remove('card-rotate');
 		element.classList.remove('blue');
 		element.classList.add('purple');
@@ -307,13 +287,13 @@ const clearBoard = () => {
 const timer = () => {
   let i = 0;
   let timer = setInterval(function() {
-    console.log(i);
     time.textContent = i;
     i++;
     // stop timer if game is reset or game is won
-    if(playModal.style.display === 'block' || winModal.style.display === 'block') {
-       clearTimeout(timer);
-       i=0;
+    // if(playModal.style.display === 'block' || winModal.style.display === 'block') {
+    if(winModal.style.display === 'block') {
+      clearTimeout(timer);
+      // i=0;
     }
   }, 1000); //roughly 1 second
 }
@@ -321,18 +301,14 @@ const timer = () => {
 
 // Modal functions
 // When the user clicks the button, play game and hide modal
-playBtn.addEventListener('click', () => {
-  playGame();
-  playModal.style.display = "none";
-})
-
+for(let i=0; i<playBtn.length;i++) {
+playBtn[i].addEventListener('click', () => {
+	resetGame();
+	playGame();
+});
+}
 // When the user clicks the button play a new game
-winBtn.addEventListener('click', () => {
-  location.reload();
-  // winModal.style.display = "none";
-  // playModal.style.display = "none";
-})
+// winBtn.addEventListener('click', reloadPage)
+// winBtn.addEventListener('click', resetGame)
 
-
-// NEED TO RANDOMIZE CARDS!!!
 // at beginning of game show all cards then flip over - 5 seconds maybe?
