@@ -1,6 +1,6 @@
 const card = document.querySelectorAll('.card');
 // use spread operator to log all cards in array:
-let cards;
+let cards, cardsFlipped;
 
 const playModal = document.getElementById('playModal');
 const playBtn = document.getElementById('playBtn');
@@ -15,7 +15,7 @@ const scoreBoard = document.getElementsByClassName('score-ul')[0]
 const userTime = document.getElementById('userTime');
 const userMoves = document.getElementById('userMoves');
 
-let firstCard;
+let firstCard, secondCard;
 let hascardbeenflipped = false;
 
 // The cards we want to play in the game
@@ -79,6 +79,14 @@ const clearBoard = () => {
 		element.classList.remove('disable');
 	})
 }
+
+const lockCards = () => {
+	// while checking for match disable event listener so no other cards can be turned
+	card.forEach(item => item.removeEventListener('click', displayCard))
+}
+const unlockCards = () => {
+	card.forEach(item => item.addEventListener('click', displayCard))
+}
 // Checks for a match when two cards are flipped
 const checkMatch = () => {
 	let firstType = firstCard.classList[1];
@@ -122,13 +130,19 @@ function displayCard() {
 	if(!hascardbeenflipped) {
 		firstCard = this;
 		hascardbeenflipped = true;
+		cardsFlipped = 1
 	} else {
 		secondCard = this;
 		checkMatch();
 		checkWin();
 		userMove++;
 		moves.textContent = userMove;	
+		cardsFlipped = 2;
 	}
+
+	// if cardsFlipped is greater than 2 stop additional cards getting turned
+	(cardsFlipped === 2) ? lockCards() : unlockCards();
+
 }
 
 const startGame = () => {
@@ -140,12 +154,10 @@ const startGame = () => {
 	moves.textContent = 0;
 	time.textContent = 0;
 
-
 	scoreBoard.classList.add('show');
 	// start timer
 	timer();
 
-	console.log('Game time!')
 	hascardbeenflipped = false;
 	cards = [...card];
 	shuffleCards();
@@ -171,7 +183,10 @@ const timer = () => {
 // When the user clicks the button, play game and hide modal
 playBtn.addEventListener('click', startGame);
 // When the user clicks the button play a new game
-winBtn.addEventListener('click', startGame)
+winBtn.addEventListener('click', () => {
+	scoreBoard.classList.add('hide');
+	startGame();
+})
 reset.addEventListener('click', () => {
 	scoreBoard.classList.add('hide');
 	playModal.style.display = 'block'
