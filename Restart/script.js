@@ -80,15 +80,11 @@ const clearBoard = () => {
 	})
 }
 
-const lockCards = () => {
-	// while checking for match disable event listener so no other cards can be turned
-	card.forEach(item => item.removeEventListener('click', displayCard))
-}
-const unlockCards = () => {
-	card.forEach(item => item.addEventListener('click', displayCard))
-}
 // Checks for a match when two cards are flipped
 const checkMatch = () => {
+	cards.forEach((element) => {
+		element.classList.add('disable');
+	})
 	let firstType = firstCard.classList[1];
 	let secondType = secondCard.classList[1];
 	if(firstType === secondType) {
@@ -98,11 +94,11 @@ const checkMatch = () => {
 		firstCard.classList.add('disable');
 		secondCard.classList.remove('blue');
 		secondCard.classList.add('yellow');
-		
 		// filter out the cards that are not equal to the current match
 		cards = cards.filter(element => {
 			return (element !== firstCard && element !== secondCard)
 		});
+		clearBoard();
 	} else {
 		// clear board in 1 second as 2 cards will be showing
 		setTimeout(clearBoard, 1000);
@@ -130,19 +126,13 @@ function displayCard() {
 	if(!hascardbeenflipped) {
 		firstCard = this;
 		hascardbeenflipped = true;
-		cardsFlipped = 1
 	} else {
 		secondCard = this;
 		checkMatch();
 		checkWin();
 		userMove++;
 		moves.textContent = userMove;	
-		cardsFlipped = 2;
 	}
-
-	// if cardsFlipped is greater than 2 stop additional cards getting turned
-	(cardsFlipped === 2) ? lockCards() : unlockCards();
-
 }
 
 const startGame = () => {
