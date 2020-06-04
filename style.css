@@ -3,14 +3,21 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.25rem;
   background-image: url('mixkit-starry-night-sky-over-hills-and-water-85-original.png');
-  background-repeat: no-repeat; 
+  /*background-repeat: repeat-y; */
+  /*background-size: cover;*/
+  /*background-size: 100vw 100vh;*/
+
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
 }
 .wrapper {
 	display: flex;
 	align-content: center;
 	justify-content: center;
-  width: 100%;
+  /*width: 100%;*/
 }
 h1, h2, h3, h4, h5, h6 {  font-family: 'Pacifico', cursive; }
 h1 {
@@ -52,10 +59,10 @@ ul {
 #container {
 	display: grid;
 	gap: 20px;
-	grid-template-rows: repeat(4, 1fr);
+	/*grid-template-rows: repeat(4, 1fr);*/
 	grid-template-columns: repeat(4, 1fr);
   border-radius: 25px;
-  padding: 0 5% 5% 5%;
+  padding: 0 3% 3% 3%;
   background: rgba(233,242,252, 0.6);
   -moz-box-shadow: 4px 4px 5px #888888;
   -ms-box-shadow: 4px 4px 5px #888888;
@@ -67,7 +74,7 @@ ul {
 .card {
   cursor:pointer;
   text-align: center;
-  padding: 10px;
+  padding: 8px;
   font-size:4.5rem;
   border-radius:25px;
   border:1px solid #bbb;
@@ -133,7 +140,7 @@ ul {
 /* Modal Content */
 .modal-content {
   position: relative;
-  margin: 0 35%;
+  margin: 0 30%;
   padding: 20px 10px;
   text-align: center;
   border-radius:25px;
@@ -158,21 +165,26 @@ ul {
 }
 
 button {
-  background: rgba(233,242,252, 0.75);
   border-radius: 15px;
   font-family: 'Pacifico', cursive;
-  font-size: 2em;
-  border-bottom: 2px solid #C1F4FA;
-  border-right: 2px solid #C1F4FA;
   text-align: center;
-  margin:0 0 30px 0;
   -moz-box-shadow: 4px 4px 5px #888888;
   -ms-box-shadow: 4px 4px 5px #888888;
   -webkit-box-shadow: 4px 4px 5px #888888;
   -o-box-shadow: 4px 4px 5px #888888;
   box-shadow: 4px 4px 5px #888888;
 }
-
+.reset-btn { 
+  font-size: 1.5em; 
+  background: rgba(233,242,252, 0.5);
+}
+.play-btn {
+  font-size: 2em;
+  background: rgba(233,242,252, 0.75);
+  border-bottom: 2px solid #C1F4FA;
+  border-right: 2px solid #C1F4FA;
+  margin:0 0 30px 0;
+}
 /*https://paulund.co.uk/how-to-create-shiny-css-buttons*/
 /***********************************************************************
  *  Yellow Background
@@ -211,4 +223,63 @@ button {
   background: -o-linear-gradient(top, #7F72D2 0%, #4E3B76 66%, #341E5D 100%); /* Opera 11.10+ */
   background: -ms-linear-gradient(top, #7F72D2 0%, #4E3B76 66%, #341E5D 100%); /* IE10+ */
   background: linear-gradient(top, #7F72D2 0%, #4E3B76 66%, #341E5D 100%);
+}
+
+
+
+
+
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 800px) {
+  h1 {
+    font-size: 2.5em;
+    border-radius: 0;
+    width: 100%;
+  }
+  h2 { margin: 0; }
+  #container {
+    gap: 20px 10px;
+    padding: 0 3% 3% 3%;
+  }
+  .card {
+    padding: 0;
+    font-size: 3.5rem;
+    width: 80px;
+    height: 80px;
+  }
+  .modal-content { margin: 0 10%; }
+
+  .score-board {
+    text-align: center;
+    line-height: 1.5rem
+  }
+  ul { margin-bottom: 0; }
+  .score-ul { 
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  /*body { font-size: 1rem; }*/
+  h2 { margin: 0; font-size: 1.5rem; }
+  #container {
+    gap: 10px 5px;
+    padding: 0 2% 2% 2%;
+  }
+  .card {
+    font-size: 2.75rem;
+    width: 60px;
+    height: 60px;
+  }
+  .modal-content { 
+    margin: 0 10%; 
+    font-size: 1rem;
+    padding: 10px 5px;
+  }
+  .play-btn { font-size: 1.5rem; }
+  .reset-btn { 
+    font-size: 1em;
+    margin-bottom: 10px; 
+  }
 }

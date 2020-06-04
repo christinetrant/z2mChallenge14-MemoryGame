@@ -175,7 +175,7 @@ playBtn.addEventListener('click', startGame);
 winBtn.addEventListener('click', startGame);
 // if reset game pressed - bring up playmodal
 reset.addEventListener('click', () => {
-	scoreBoard.classList.add('hide');
+	// scoreBoard.classList.add('hide');
 	playModal.style.display = 'block'
 })
 
