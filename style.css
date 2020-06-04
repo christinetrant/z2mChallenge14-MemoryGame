@@ -4,14 +4,14 @@ body {
   font-size: 1.25rem;
   background-image: url('mixkit-starry-night-sky-over-hills-and-water-85-original.png');
   /*background-repeat: repeat-y; */
-  /*background-size: cover;*/
+  background-size: cover;
   /*background-size: 100vw 100vh;*/
 
-  height: 100vh;
-  background-position: center;
+  /*height: 100vh;*/
+ /* background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
+  position: relative;*/
 }
 .wrapper {
 	display: flex;
