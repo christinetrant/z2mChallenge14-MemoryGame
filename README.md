@@ -2,6 +2,8 @@
 ![](https://img.shields.io/badge/Difficulty:%20%20%20-%20%20%20BEGINNER-green.svg?style=for-the-badge)
 ![](https://img.shields.io/badge/Powered%20by:%20%20%20-%20%20%20Javascript-yellow.svg?style=for-the-badge&logo=JAVASCRIPT)
 
+[Challenge from zero to mastery](https://github.com/zero-to-mastery/coding_challenge-14)
+
 This coding challenge is all about **understanding javascript and coding without the help of a library or tool**. It is very easy to get caught up in all of the trendy libraries and tools that allow you to build front end applications. However, by focusing on just a library, you are letting yourself be at the mercy of trends that constantly change. Instead, if you are able to understand the core concepts of javascript, then you aren't as influenced by trends and you can constantly adapt since the underlying language of the web doesn't change very often (these libraries are all written in Javascript afterall!) In this challenge, you are only allowed to use JavaScript to build a game!
 
 Please Use the **#coding-challenge** channel on Discord to discuss and share your work. At the end of the challenge, I will compile everyone's submitted websites on here.
@@ -35,117 +37,3 @@ The bot will listen for the command and will submit the link you provided in the
 
 *** **Please note: As with all my challenges there is zero benefit or monetary gain I receive from it. This is just my way of thanking my students and making sure that you are able to continue gaining valuable knowledge outside of just my videos. It would mean a lot to me if you are able to rate my course...5 star reviews make my day :)**
 
-## Coding Challenge Submissions
-The wonderful submissions from some of the Zero-to-Mastery students on the foutreenth coding challenge will be posted here at the end of the month!
-
-#### geelie#5864
-- [Github Repo](https://github.com/GlynL/coding_challenge-14)
-- [Game Demo](https://www.glynlewington.com/guessing-game/)
-
-#### roopabdr#4125
-- [Github Repo](https://github.com/roopabdr/coding_challenge-14)
-- [Game Demo](http://htmlpreview.github.io/?https://github.com/roopabdr/coding_challenge-14/blob/master/index.html)
-
-#### Jaroslav Huss#4614
-- [Github Repo](https://github.com/jaroslavhuss/codingchallange14)
-- [Game Demo](https://dazzling-jackson-163a4f.netlify.com/)
-
-#### Parca#4465
-- [Github Repo](https://github.com/uhayon/coding_challenge-14)
-- [Game Demo](https://uhayon.github.io/matching-game/)
-
-#### alex-kun#9405
-- [Github Repo](https://github.com/Alexgioff/coding_challenge-14/)
-- [Game Demo](https://alexgioff.github.io/coding_challenge-14/)
-
-#### sasot#1266
-- [Github Repo](https://github.com/saso78/coding_challenge-14/)
-- [Game Demo](http://htmlpreview.github.io/?https://github.com/saso78/coding_challenge-14/blob/master/index.html)
-
-#### masci4#7646
-- [Github Repo](https://github.com/sciortinomrc/matching-game)
-- [Game Demo](http://htmlpreview.github.io/?https://github.com/sciortinomrc/matching-game/blob/master/index.html)
-
-#### Belnako#3185
-- [Github Repo](https://github.com/Belnako/coding_challenge-14)
-- [Game Demo](https://belnako.github.io/coding_challenge-14/)
-
-#### Dmitri#5647
-- [Github Repo](https://github.com/Dmitri801/dev-match-challenge14)
-- [Game Demo](https://dmitri801.github.io/dev-match-challenge14/)
-
-#### Sergei#1434
-- [Github Repo](https://github.com/kopluspro/Memory-Game)
-- [Game Demo](https://kopluspro.github.io/Memory-Game/)
-
-#### Donatron#4502
-- [Github Repo](https://github.com/Donatron/thrones-match)
-- [Game Demo](http://htmlpreview.github.io/?https://github.com/Donatron/thrones-match/blob/master/index.html)
-
-#### Maïeul#6749
-- [Github Repo](https://github.com/maieulChevalier/maieulchevalier.github.io/tree/master/coding-challenge-14)
-- [Game Demo](https://maieulchevalier.github.io/coding-challenge-14/)
-
-#### Russellicious#4508
-- [Github Repo](https://github.com/RussellSoppe/matchup)
-- [Game Demo](https://russellsoppe.github.io/matchup/)
-
-#### arudovwen#3427
-- [Github Repo](https://github.com/arudovwen/memory-match)
-- [Game Demo](https://arudovwen.github.io/memory-match/)
-
-#### pillinho_sk#5509
-- [Github Repo](https://github.com/Dromediansk/matching-game-coding-challenge-14)
-- [Game Demo](https://dromediansk.github.io/matching-game-coding-challenge-14/)
-
-#### Mattchow#8280
-- [Github Repo](https://github.com/MattCSmith/RoboMatch-Frontend)
-- [Game Demo](https://mattcsmith.github.io/RoboMatch-Frontend/)
-
-#### The24thDS#6523
-- [Github Repo](https://github.com/The24thDS/memory-game)
-- [Game Demo](https://the24thds.github.io/memory-game/)
-
-#### Ser#9716
-- [Github Repo](https://github.com/serstyle/code-challenge-14/)
-- [Game Demo](https://serstyle.github.io/code-challenge-14/)
-
-#### Wolfgang#5359
-- [Github Repo](https://github.com/r4ptos)
-- [Game Demo](https://r4pt0s.github.io/matchingGame/)
-
-#### DanielRT#4931
-- [Github Repo](https://github.com/daniriian)
-- [Game Demo](https://daniriian.github.io/MemoryGame/)
-
-#### Dextrous#8737
-- [Github Repo](https://github.com/SsjSanthosh/memoryTiles/)
-- [Game Demo](https://ssjsanthosh.github.io/memoryTiles/)
-
-#### Sniper73#8041
-- [Github Repo](https://github.com/vyper248)
-- [Game Demo](https://vyper248.github.io/coding_challenge-14/)
-
-#### newchar#3140
-- [Github Repo](https://github.com/FamNew/challenge14)
-- [Game Demo](https://famnew.github.io/challenge14/)
-
-#### oghenebrume#8411
-- [Github Repo](https://github.com/Oghenebrume50/Matching-game)
-- [Game Demo](https://chrome.google.com/webstore/detail/matching-game/hhhlbcdjcjeaeckhmegpfchaagpiohok?hl=en-US&authuser=1)
-
-#### carrn7k#8846
-- [Github Repo](https://github.com/carrn7k/coding-challenge-14)
-- [Game Demo](http://htmlpreview.github.io/?https://github.com/carrn7k/coding-challenge-14/blob/master/index.html)
-
-#### Major Kira#9300
-- [Github Repo](https://github.com/majorkira/MatchGame)
-- [Game Demo](https://majorkira.github.io/MatchGame/)
-
-#### thenab#7955
-- [Github Repo](https://github.com/thenab0303/khmatchgame)
-- [Game Demo](https://thenab0303.github.io/khmatchgame/)
-
-#### E.#8741
-- [Github Repo](https://github.com/sterlingwalsh/robofind)
-- [Game Demo](https://sterlingwalsh.github.io/robofind/)
